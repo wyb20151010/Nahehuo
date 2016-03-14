@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/width_68_80"
+    android:layout_height="@dimen/height_50_80"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:background="@drawable/back_shape"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="135dp">
+
+            <ImageView
+                android:id="@+id/iv_pro_pic"
+                android:src="@drawable/img1"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_pro_title"
+                android:textColor="@color/black"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:singleLine="true"
+                android:text="寻皮革网---千亿级项目招募省级城市合伙人"
+                android:textSize="17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/tv_pro_title_detail"
+                android:textColor="@color/textcolorgray"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:singleLine="true"
+                android:text="千亿级潜力市场的项目，皮革行业B2B+O2O+金融服务"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/linecolorgray"
+            android:layout_width="match_parent"
+            android:layout_height="1px"></LinearLayout>
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:padding="10dp"
+            android:id="@+id/tfl_pro_tag"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+        </com.zhy.view.flowlayout.TagFlowLayout>
+        <LinearLayout
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/linecolorgray"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_pro_per_avater"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="42dp"
+                android:layout_height="42dp"/>
+            <TextView
+                android:id="@+id/tv_project_com_name"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:text="樱桃小丸子"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_pro_com_position"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/textcolorgray"
+                android:text="后台产品经理-今翌信息科技（上海）有限公司"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="none"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+
+        >
+
+        <include layout="@layout/toolbar_partner"></include>
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="@color/textcolorgray"
+            android:text="接到offer并入职(^▽^)"
+            android:background="@drawable/back_shape_round"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="270dp"
+            android:layout_height="45dp"/>
+
+        <Button
+            android:id="@+id/btn_no_accept"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="@color/textcolorgray"
+            android:text="未接到offer(－︿－)"
+            android:background="@drawable/back_shape_round"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="270dp"
+            android:layout_height="45dp"/>
+
+        <Button
+            android:id="@+id/btn_reject"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="@color/textcolorgray"
+            android:text="接到offer但拒绝(＞﹏＜)"
+            android:background="@drawable/back_shape_round"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="270dp"
+            android:layout_height="45dp"/>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/backgroundgray">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/linecolorgray"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:textSize="15sp"
+                android:textColor="@color/textcolorgray"
+                android:text="职位相符:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <io.techery.properratingbar.ProperRatingBar
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/upperRatingBar_position"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="1dp"
+                app:prb_tickNormalDrawable="@drawable/ic_star_normal"
+                app:prb_tickSelectedDrawable="@drawable/ic_star_selected"
+                app:prb_defaultRating="4"
+                app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                app:prb_totalTicks="5"
+                app:prb_clickable="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:textSize="15sp"
+                android:textColor="@color/textcolorgray"
+                android:text="面试打分:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <io.techery.properratingbar.ProperRatingBar
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/upperRatingBar_inter"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="1dp"
+                app:prb_tickNormalDrawable="@drawable/ic_star_normal"
+                app:prb_tickSelectedDrawable="@drawable/ic_star_selected"
+                app:prb_defaultRating="4"
+                app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                app:prb_totalTicks="5"
+                app:prb_clickable="true"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/backgroundgray">
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:text="一句话总结你的面试"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginRight="20dp"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="点击选择..."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="#f3f3f3"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <EditText
+                android:padding="5dp"
+                android:textSize="13sp"
+                android:textColorHint="@color/textcolorgrayhint"
+                android:hint="填写你对公司的评价，最多200字。可不填"
+                android:gravity="top"
+                android:background="@null"
+                android:minLines="5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_login"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="提交"
+            android:background="@drawable/bg_shape_round"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="@dimen/width_74_80"
+            android:layout_height="@dimen/height_5_80"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:textSize="15sp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="匿名"
+                android:textColor="@color/textcolorgray"
+                android:buttonTint="@color/tag_unselected"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_dismiss"
+    android:background="@color/popup_bg">
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:id="@+id/popup_anima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/back_shape_round_white"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:textColor="@color/black"
+                android:text="请选择性别"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/linecolorgray">
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_male"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:textColor="@color/textcolorgray"
+                android:text="男生"
+                android:layout_centerInParent="true"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/linecolorgray">
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_female"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:textColor="@color/textcolorgray"
+                android:text="女生"
+                android:layout_centerInParent="true"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

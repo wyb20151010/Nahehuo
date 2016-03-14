@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_16_80"
+    android:background="@color/white"
+    app:layout_scrollFlags="scroll|enterAlways"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="@dimen/width_19_80"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="1.6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="@color/textcolorgray"
+                android:text="今翌信息科技(上海)有限公司"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+            <io.techery.properratingbar.ProperRatingBar
+                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/upperRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:prb_tickNormalDrawable="@drawable/ic_star_normal"
+                app:prb_tickSelectedDrawable="@drawable/ic_star_selected"
+                app:prb_defaultRating="4"
+                app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                app:prb_totalTicks="5"/>
+        </LinearLayout>
+
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/tfl_company_tag"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.4"
+            android:layout_marginBottom="16dp">
+
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

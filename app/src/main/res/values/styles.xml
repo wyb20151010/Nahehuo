@@ -1,0 +1,102 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme"
+        parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.two"
+        parent="AppTheme.Base"></style>
+
+    <style name="AppTheme.Base">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorControlNormal">@color/white</item>
+
+    </style>
+    <style name="AppTheme.one" parent="AppTheme.Base">
+        <item name="colorPrimaryDark">#595959</item>
+    </style>
+    <style name="AppTheme.three" parent="AppTheme.Base">
+        <item name="colorPrimaryDark">#1D1D1D</item>
+    </style>
+    <style name="AppTheme.four" parent="AppTheme.Base">
+        <item name="colorPrimaryDark">#5CC7AB</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="popwin_anim_style">
+        <item name="android:windowExitAnimation">@anim/select_picture_hide
+        </item>
+        <item name="android:windowEnterAnimation">@anim/select_picture_show
+        </item>
+    </style>
+    <style name="CustomTabLayoutTextAppearance"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">18sp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/textcolorgray</item>
+    </style>
+    <style name="CustomTabLayoutTextAppearance2"
+        parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">15sp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/textcolorgray</item>
+    </style>
+
+    <style name="tabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="tabBackground">?attr/colorPrimary</item>
+        <item name="tabIndicatorColor">@android:color/white</item>
+    </style>
+
+    <style name="commonListViewStyle" parent="baseLayoutParam">
+        <item name="android:drawSelectorOnTop">false</item>
+    </style>
+
+    <style name="baseLayoutParam">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <declare-styleable name="CircularImageView">
+        <attr name="border"
+            format="boolean"/>
+        <attr name="border_width"
+            format="dimension"/>
+        <attr name="border_color"
+            format="color"/>
+        <attr name="shadow"
+            format="boolean"/>
+        <attr name="shadow_color"
+            format="color"/>
+        <attr name="shadow_radius"
+            format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="Theme">
+        <attr name="circularImageViewStyle"
+            format="reference"/>
+    </declare-styleable>
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

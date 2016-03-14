@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_12_80">
+
+            <LinearLayout
+                android:layout_width="@dimen/width_18_80"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/iv_avater"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="15dp"
+                    android:text="张三李四"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:textColor="@color/textcolorgrayhint"
+                    android:layout_marginTop="6dp"
+                    android:text="职位相符: 4.5  面试打分: 4.0"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_tag"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/checked_bg_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_tag"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:text="未接到offer (－︿－)"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginRight="50dp"
+                android:id="@+id/tv_comment_title"
+                android:layout_marginLeft="79dp"
+                android:text="[ 面试官很nice ]"
+                android:textSize="15sp"
+                android:textColor="@color/textcolorgray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:lineSpacingExtra="8dp"
+                android:layout_marginRight="50dp"
+                android:textColor="@color/textcolorgray"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_comment_content"
+                android:layout_marginLeft="79dp"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginBottom="8dp"
+                android:text="2015-12-12 15:33"
+                android:textColor="@color/textcolorgrayhint"
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_comment_time"
+                android:layout_marginLeft="79dp"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/backgroundgray"
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

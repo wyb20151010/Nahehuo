@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView
+    android:id="@+id/tv_tag"
+    android:layout_margin="3dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="2dp"
+    android:paddingTop="2dp"
+    android:background="@drawable/bg_shape_round2"
+    android:textColor="@color/white"
+    android:text="傻瓜是你 9"
+    android:textSize="13sp"
+    xmlns:android="http://schemas.android.com/apk/res/android"/>
+

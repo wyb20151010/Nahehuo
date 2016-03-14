@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_dismiss"
+    android:background="@color/popup_bg">
+
+    <LinearLayout
+        android:layout_marginTop="130dp"
+        android:id="@+id/popup_anima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/back_shape_round_white"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_work_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/black"
+                        android:text="为什么要填写这些？"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:background="@color/linecolorgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@color/back_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="• 你即将成为合伙人，请填写你能提供什么和你想得到什么，让其他合伙人能第一时间了解你的合伙愿望"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="• 每项字数不超过20字，例如: 10年java技术合伙 城市加盟合伙 政府项目合伙"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <Button
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/btn_cancel"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:text="我知道了"
+                        android:background="@drawable/bg_shape_round"
+                        android:layout_width="@dimen/width_18_80"
+                        android:layout_height="@dimen/height_3_80"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="172dp"
+        android:background="@color/white"
+        android:id="@+id/popup_contianer">
+
+        <LinearLayout
+            android:id="@+id/ll_start_pro"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp">
+
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
+
+            <TextView
+                android:layout_marginRight="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="发起项目"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/linecolorgray"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_search_pro"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp">
+
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
+
+            <TextView
+                android:layout_marginRight="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="搜索项目"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/linecolorgray"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_pro"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp">
+
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
+
+            <TextView
+                android:layout_marginRight="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="我的项目"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/linecolorgray"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_apply_partner"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp">
+
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:layout_width="22dp"
+                android:layout_height="22dp"/>
+
+            <TextView
+                android:layout_marginRight="40dp"
+                android:layout_gravity="center_vertical"
+                android:text="申请合伙人"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

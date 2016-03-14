@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+            <ImageView
+                android:id="@+id/iv_comment_avater"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_comment_username"
+                android:layout_marginTop="10dp"
+                android:text="张三李四"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_comment_score"
+                android:layout_marginTop="10dp"
+                android:text="描述相符:4.5 公司环境:4.0 工作氛围:5.0"
+                android:textSize="14sp"
+                android:textColor="@color/textcolorgrayhint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_comment_content"
+                android:text="参与接亲的市民告诉记者，新郎是三乡本地人，后移居澳门，是90后，“家里是经商的，很有钱。”新娘是澳门人。现场图片显示，整个接亲过程豪车云集。新娘的头上戴满了金首饰，脖子上挂的金手镯更是满满当当。有消息称，新郎接亲时光礼金就有数百万。"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/textcolorgray"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_comment_time"
+                android:text="2015-12-12 12:35"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/textcolorgrayhint"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/backgroundgray"
+        android:layout_width="match_parent"
+        android:layout_height="10dp">
+
+    </LinearLayout>
+</LinearLayout>

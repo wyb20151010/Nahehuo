@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_project_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F7F7"
+    android:orientation="vertical">
+
+    <app.nahehuo.com.view.CardSlidePanelProject
+        android:id="@+id/image_slide_panel"
+        android:layout_width="fill_parent"
+        android:clipToPadding="false"
+        android:paddingTop="30dp"
+        card:bottomMarginTop="40dp"
+        card:yOffsetStep="22dp"
+        android:layout_height="fill_parent">
+
+        <app.nahehuo.com.view.CardItemViewProject
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+
+        <app.nahehuo.com.view.CardItemViewProject
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+
+        <app.nahehuo.com.view.CardItemViewProject
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+
+        <app.nahehuo.com.view.CardItemViewProject
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+    </app.nahehuo.com.view.CardSlidePanelProject>
+
+    <com.victor.loading.rotate.RotateLoading
+        android:id="@+id/loading"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        app:loading_color="@color/textcolorgray"
+        app:loading_width="5dp"/>
+
+    <LinearLayout
+        android:background="#F3F3F3"
+        android:visibility="invisible"
+        android:id="@+id/ll_find_partner"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.yyydjk.library.DropDownMenu
+            android:id="@+id/dropDownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:ddmenuTextSize="15sp"
+            app:ddtextUnselectedColor="@color/textcolorgray"
+            app:ddtextSelectedColor="@color/colorPrimary"
+            app:dddividerColor="@color/gray"
+            app:ddunderlineColor="@color/gray"
+            app:ddmenuSelectedIcon="@drawable/drop_down_selected_icon"
+            app:ddmenuBackgroundColor="@color/white"
+            app:ddmenuUnselectedIcon="@drawable/drop_down_unselected_icon"
+            />
+
+
+    </LinearLayout>
+</FrameLayout>

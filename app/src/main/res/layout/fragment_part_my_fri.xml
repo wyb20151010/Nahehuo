@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="85dp">
+
+        <LinearLayout
+            android:id="@+id/ll_new_friend"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_marginTop="18dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:textSize="13dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="13dp"
+                android:text="新的好友"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:background="@color/linecolorgray"
+            android:layout_width="1px"
+            android:layout_height="30dp">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_is_partner"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_marginTop="18dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:textSize="13dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="13dp"
+                android:text="合伙人"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:background="@color/linecolorgray"
+            android:layout_width="1px"
+            android:layout_height="30dp">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_apply_partner"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_marginTop="18dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+
+            <TextView
+                android:textSize="13dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="13dp"
+                android:text="成为合伙人"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/linecolorgray"
+        android:layout_width="match_parent"
+        android:layout_height="1px">
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="55dp">
+
+        <ListView
+            android:footerDividersEnabled="false"
+            android:id="@+id/lv_partner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+        </ListView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_select"
+            android:src="@drawable/ic_comment_white_24dp"
+            android:layout_gravity="bottom|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:elevation="2dp"/>
+    </FrameLayout>
+</LinearLayout>

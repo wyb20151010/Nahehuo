@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">哪合伙</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string-array name="sex">
+        <item>我是男生</item>
+        <item>我是女生</item>
+    </string-array>
+    <string-array name="job_search_title">
+        <item>职位</item>
+        <item>公司</item>
+    </string-array>
+    <string name="checkNetWork">无法检测到网络，请检查您的网络设置</string>
+    <string name="connect_failed">当前网络环境较差,请稍后再试</string>
+    <string name="loading">正在加载…</string>
+    <string name="uploading">正在上传…</string>
+</resources>

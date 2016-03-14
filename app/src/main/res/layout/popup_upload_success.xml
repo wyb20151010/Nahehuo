@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_dismiss"
+    android:background="@color/popup_bg">
+
+    <LinearLayout
+        android:layout_marginTop="130dp"
+        android:id="@+id/popup_anima"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/back_shape_round_white"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_work_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                    <TextView
+                        android:textSize="15sp"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/black"
+                        android:text="恭喜你，提交成功"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+
+
+                <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="13sp"
+                        android:layout_margin="20dp"
+                        android:layout_centerInParent="true"
+                        android:textColor="@color/textcolorgray"
+                        android:text="我们将在3-5个工作日完成审核，请君耐心等待呦~"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:background="@color/linecolorgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <Button
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/btn_cancel"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:text="我知道了"
+                        android:background="@drawable/bg_shape_round"
+                        android:layout_width="@dimen/width_18_80"
+                        android:layout_height="@dimen/height_3_80"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>

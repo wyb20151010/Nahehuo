@@ -1,0 +1,247 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/back_shape">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="@dimen/width_69_80"
+        android:layout_height="@dimen/height_52_80"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:layout_gravity="center"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="20dp">
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/iv_title"
+            android:scaleType="centerCrop"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_marginTop="7dp"
+            android:id="@+id/tv_position"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:text="高级PHP开发工程师"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="3dp"
+            android:id="@+id/tv_company"
+            android:textSize="15sp"
+            android:text="今翌信息科技有限公司"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:background="@color/linecolorgray"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <ImageView
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/tv_wage"
+                        android:layout_centerInParent="true"
+                        android:text="20K-30K"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="26dp"
+                android:layout_marginTop="26dp"
+                android:background="@color/linecolorgray"
+                android:layout_width="1px"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <ImageView
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/tv_work_year"
+                        android:layout_centerInParent="true"
+                        android:text="10年以上"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="26dp"
+                android:layout_marginTop="26dp"
+                android:background="@color/linecolorgray"
+                android:layout_width="1px"
+                android:layout_height="match_parent">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <ImageView
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <TextView
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:id="@+id/tv_city"
+                        android:layout_centerInParent="true"
+                        android:text="杭州"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/linecolorgray"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+
+        </LinearLayout>
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/fl_job_detailone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
+        <LinearLayout
+            android:background="@color/linecolorgray"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px">
+
+        </LinearLayout>
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/fl_job_detailtwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.zhy.view.flowlayout.TagFlowLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_notlike"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/slide_without_icon"
+        android:alpha="0"/>
+
+    <ImageView
+        android:id="@+id/iv_like"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/slide_interested_icon"
+        android:alpha="0"/>
+</FrameLayout>

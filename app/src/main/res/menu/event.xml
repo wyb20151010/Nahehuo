@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/start_event"
+        android:title="发起活动"
+        android:icon="@drawable/ic_discuss"
+        app:showAsAction="never"
+        >
+
+    </item>
+    <item
+        android:id="@+id/search_event"
+        android:title="搜索活动"
+        android:icon="@drawable/search"
+        app:showAsAction="never"
+        >
+
+    </item>
+    <item
+        android:id="@+id/my_event"
+        android:title="我的活动"
+        android:icon="@drawable/ic_discuss"
+        app:showAsAction="never"
+        >
+
+    </item>
+</menu>

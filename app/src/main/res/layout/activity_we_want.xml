@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/toolbar_partner"></include>
+
+    <LinearLayout
+        android:background="@color/back_gray"
+        android:layout_width="match_parent"
+        android:layout_height="43dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/textcolorgray"
+            android:textSize="15sp"
+            android:text="我想得到(至少填写一个)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/textcolorgray"
+            android:id="@+id/et_one"
+            android:maxLength="20"
+            android:textColorHint="@color/textcolorgrayhint"
+            android:hint="如：彼此信任共同努力"
+            android:textSize="15sp"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:background="@color/linecolorgray"
+        android:layout_width="match_parent"
+        android:layout_height="1px">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/textcolorgray"
+            android:id="@+id/et_two"
+            android:maxLength="20"
+            android:textColorHint="@color/textcolorgrayhint"
+            android:hint="如：技术，产品，运营，市场合伙人"
+            android:textSize="15sp"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:background="@color/linecolorgray"
+        android:layout_width="match_parent"
+        android:layout_height="1px">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/textcolorgray"
+            android:id="@+id/et_three"
+            android:maxLength="20"
+            android:textColorHint="@color/textcolorgrayhint"
+            android:hint="如：城市合伙加盟，天使轮资金"
+            android:textSize="15sp"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:background="@color/linecolorgray"
+        android:layout_width="match_parent"
+        android:layout_height="1px">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/back_gray"
+        android:layout_width="match_parent"
+        android:layout_height="10dp">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:textColor="@color/textcolorgrayhint"
+            android:textSize="14sp"
+            android:layout_margin="12dp"
+            android:text="• 作为合伙人，请填写你能提供什么和你想得到什么，让其他合伙人第一时间了解你的合伙愿望。"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textColor="@color/textcolorgrayhint"
+            android:textSize="14sp"
+            android:layout_margin="12dp"
+            android:text="• 每一项字数不超过20字，例如：10年技术求城市加盟和政府项目合作。"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

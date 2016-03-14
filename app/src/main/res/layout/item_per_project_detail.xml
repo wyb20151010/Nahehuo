@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.makeramen.RoundedImageView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/iv_upload"
+            android:scaleType="centerCrop"
+            android:src="@drawable/panda"
+            android:layout_alignParentTop="true"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_centerHorizontal="true"
+            app:corner_radius="22dp"
+
+            />
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:text="樱桃子"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="20dp"
+                    android:layout_height="16dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_marginTop="4dp"
+                android:textSize="13sp"
+                android:textColor="@color/textcolorgray"
+                android:text="后台产品经理-今翌信息科技有限公司"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                 <LinearLayout
+                     android:orientation="vertical"
+                     android:layout_weight="5"
+                     android:layout_width="0dp"
+                     android:layout_height="match_parent">
+                     <LinearLayout
+                         android:layout_marginTop="8dp"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content">
+
+                         <ImageView
+                             android:src="@drawable/my_project_phone"
+                             android:layout_gravity="center_vertical"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"/>
+
+                         <TextView
+                             android:id="@+id/tv_phone"
+                             android:layout_marginLeft="5dp"
+                             android:layout_gravity="center_vertical"
+                             android:textSize="12sp"
+                             android:textColor="@color/textcolorgrayhint"
+                             android:text="13915170369"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"/>
+                     </LinearLayout>
+
+                     <LinearLayout
+                         android:layout_marginTop="5dp"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content">
+
+                         <ImageView
+                             android:src="@drawable/my_project_email"
+                             android:layout_gravity="center_vertical"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"/>
+
+                         <TextView
+                             android:id="@+id/tv_email"
+                             android:layout_marginLeft="5dp"
+                             android:layout_gravity="center_vertical"
+                             android:textSize="12sp"
+                             android:textColor="@color/textcolorgrayhint"
+                             android:text="40314510@qq.com"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"/>
+                     </LinearLayout>
+
+                 </LinearLayout>
+                <RelativeLayout
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:layout_alignParentBottom="true"
+                        android:id="@+id/tv_tag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="3dp"
+                        android:paddingTop="3dp"
+                        android:background="@drawable/bg_shape_round_bule"
+                        android:textColor="@color/white"
+                        android:text="给他留言"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="@color/linecolorgray"
+        android:layout_width="match_parent"
+        android:layout_height="1px">
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Nahehuo.iml" filepath="$PROJECT_DIR$/Nahehuo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dropdownmenulibrary/dropdownmenulibrary.iml" filepath="$PROJECT_DIR$/dropdownmenulibrary/dropdownmenulibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/edittextlibrary/edittextlibrary.iml" filepath="$PROJECT_DIR$/edittextlibrary/edittextlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flowlayout-lib/flowlayout-lib.iml" filepath="$PROJECT_DIR$/flowlayout-lib/flowlayout-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mysublimepickerlibrary/mysublimepickerlibrary.iml" filepath="$PROJECT_DIR$/mysublimepickerlibrary/mysublimepickerlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plvlibrary/plvlibrary.iml" filepath="$PROJECT_DIR$/plvlibrary/plvlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ratingbarlibrary/ratingbarlibrary.iml" filepath="$PROJECT_DIR$/ratingbarlibrary/ratingbarlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/roundedimageview/roundedimageview.iml" filepath="$PROJECT_DIR$/roundedimageview/roundedimageview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slidingmenulibrary/slidingmenulibrary.iml" filepath="$PROJECT_DIR$/slidingmenulibrary/slidingmenulibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/viewpagerlibrary/viewpagerlibrary.iml" filepath="$PROJECT_DIR$/viewpagerlibrary/viewpagerlibrary.iml" />
+    </modules>
+  </component>
+</project>

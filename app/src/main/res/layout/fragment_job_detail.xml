@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_16_80">
+
+                    <RelativeLayout
+                        android:layout_weight="2.4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <ImageView
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="@dimen/width_11_80"
+                            android:layout_height="@dimen/width_11_80"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:textSize="16sp"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/black"
+                            android:text="高级PHP开发工程师"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:layout_alignParentTop="true"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/textcolorgray"
+                            android:text="今翌信息科技(上海)有限公司"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@color/backgroundgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_13_80">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_weight="4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="@dimen/width_8_80"
+                                android:layout_height="@dimen/width_8_80"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <TextView
+                                android:textSize="14sp"
+                                android:id="@+id/tv_wage"
+                                android:layout_centerInParent="true"
+                                android:text="20K-30K"
+                                android:textColor="@color/black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/linecolorgray"
+                        android:layout_width="1px"
+                        android:layout_height="@dimen/height_5_80">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_weight="4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="@dimen/width_8_80"
+                                android:layout_height="@dimen/width_8_80"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <TextView
+                                android:textColor="@color/black"
+                                android:id="@+id/tv_work_year"
+                                android:layout_centerInParent="true"
+                                android:textSize="14sp"
+                                android:text="10年以上"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/linecolorgray"
+                        android:layout_width="1px"
+                        android:layout_height="@dimen/height_5_80">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <RelativeLayout
+                            android:layout_weight="4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="@dimen/width_8_80"
+                                android:layout_height="@dimen/width_8_80"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <TextView
+                                android:textSize="14sp"
+                                android:textColor="@color/black"
+                                android:id="@+id/tv_city"
+                                android:layout_centerInParent="true"
+                                android:text="杭州"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@color/backgroundgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp">
+
+                    <com.zhy.view.flowlayout.TagFlowLayout
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/tfl_job_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></com.zhy.view.flowlayout.TagFlowLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="@color/backgroundgray"
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_5_80">
+
+                        <TextView
+                            android:textSize="14sp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/black"
+                            android:text="岗位描述:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:background="@color/linecolorgray"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:textColor="@color/textcolorgray"
+                            android:text="你好"
+                            android:textSize="13sp"
+                            android:id="@+id/tv_job_re"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="@color/backgroundgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_26_80">
+
+                    <RelativeLayout
+                        android:layout_weight="1.6"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:layout_marginBottom="5dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:text="今翌信息科技(上海)有限公司"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <RelativeLayout
+                            android:layout_weight="0.8"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <io.techery.properratingbar.ProperRatingBar
+                                android:layout_centerVertical="true"
+                                android:id="@+id/upperRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_margin="1dp"
+                                app:prb_tickNormalDrawable="@drawable/ic_star_normal"
+                                app:prb_tickSelectedDrawable="@drawable/ic_star_selected"
+                                app:prb_defaultRating="4"
+                                app:prb_symbolicTickNormalColor="@android:color/darker_gray"
+                                app:prb_totalTicks="5"/>
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_weight="2.8"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_weight="12"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp">
+
+                                    <TextView
+                                        android:textSize="14sp"
+                                        android:layout_marginLeft="10dp"
+                                        android:id="@+id/tv_industry"
+                                        android:text="行业:  原油/电力/水利工程"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp">
+
+                                    <TextView
+                                        android:textSize="14sp"
+                                        android:layout_marginLeft="10dp"
+                                        android:id="@+id/tv_scale"
+                                        android:text="规模:  1000-20000人"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent">
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_weight="2.2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp">
+
+                                <TextView
+                                    android:textSize="14sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:id="@+id/tv_finance"
+                                    android:text="融资:  D轮级以上"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp">
+
+                                <TextView
+                                    android:textSize="14sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:id="@+id/tv_website"
+                                    android:text="网站:  http://www.nahehuo.com/"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_weight="4"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <Button
+                                android:id="@+id/btn_delivery_resume"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/white"
+                                android:background="@drawable/bg_shape_round"
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                android:text="立即投递"
+                                android:textSize="17sp"
+                                android:layout_width="@dimen/width_76_80"
+                                android:layout_height="@dimen/height_6_80"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

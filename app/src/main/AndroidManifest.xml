@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.nahehuo.com">
+    <!-- Required -->
+    <uses-permission android:name="app.nahehuo.com.permission.JPUSH_MESSAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <!-- since 1.6.0 -->
+
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <!-- shareSDK -->
+
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
+    <!-- baidumap -->
+
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <!-- 允许应用读取低级别的系统日志文件 -->
+    <uses-permission android:name="android.permission.READ_LOGS"></uses-permission>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <application
+        android:name=".application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"></activity>
+        <activity
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.job.JobSubscribeActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ui.StartActivity"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.RegisterActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.UserAgreementActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.EnterPasswordActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.FillInformationActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.FillInformation2Activity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.LoginActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.FindPasswordActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.EnterPassword2Activity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.ChangePassSuccessActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.EnterEmailActivity">
+
+        </activity>
+        <activity
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:name=".ui.ChangeEmailPassSuccessActivity">
+
+        </activity>
+
+        <activity
+            android:name=".ui.job.JobSearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.job.JobPositionActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.job.JobDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.job.JobDeliverySuccessActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.job.CompanyDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.job.WriteInterExpActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.job.JobInternOrPartActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.job.JobPartTimeDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.job.CompanyFounderActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.one">
+
+        </activity>
+
+        <activity
+            android:name=".ui.job.WriteInterExpActivity2"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.project.ProjectDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.project.ProjectAllAttenActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.project.ProjectTalkSucActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.project.ProjectPubActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.project.ProjectTagActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.project.ProjectSearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.project.ProjectProgressActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.project.ProjectWriteIntroActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.event.EventPubActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.event.EventWriteIntroActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.event.EventSearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.event.EventDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.event.EventGalleryActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.event.EventGalleryDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.three">
+
+        </activity>
+
+        <activity
+            android:name=".ui.event.EventPayActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerSeaActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerSeaDeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyQRCodeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.partner.PartnerNewFriActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerAllActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerApplyActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerBaseInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.partner.PartnerContactWayActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.partner.PartnerWorkExpActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerEduExpActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.partner.PartnerSwiLevelActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.partner.PartnerProgressActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerMsgActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerMsgSetActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerMsgReportActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.four">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerWallBadgeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.partner.PartnerComFriActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerAddFriActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.partner.PartnerMoreSetActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMy2VipActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.Per2VipUploadExpActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoEditTagActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoEditActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.personal.PerInfoIntroActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoCgPhoneActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoWorkPosActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoWkExpListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.personal.PerInfoWkExpDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoEduExpDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoSupplyActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInfoWantActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyWalletActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerWalRechargeActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerWalDrawCashActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.personal.PerWalNoBankCardActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:name=".ui.personal.PerWalAddBankCardActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerWalAddBankCard2Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <activity
+            android:supportsRtl="true"
+            android:name=".ui.personal.PerWalBankCardListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerWalSetPayPwdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerWalDrawCashSuActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyInterviewActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerInterviewDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyResuActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerResumePreviewActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyCollectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyEventActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerEventDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyProjectActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerProjectDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMySetActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetMyAccountActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetValidateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetMsgPushActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetAboutAppActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetValidate2Activity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetValidateFinalActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetIdActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetBindEmailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PerSetBindEmailSucActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+        <activity
+            android:name=".ui.personal.PersonalMyMsgActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
+
+        <service android:name=".service.SaveCommonDictService"></service>
+    </application>
+
+</manifest>

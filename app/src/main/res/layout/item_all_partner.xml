@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <com.makeramen.RoundedImageView
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/iv_upload"
+            android:scaleType="centerCrop"
+            android:src="@drawable/panda"
+            android:layout_alignParentTop="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            app:corner_radius="25dp"/>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:textSize="15sp"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/black"
+                    android:text="小米科技"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/iv_vip1"
+                    android:layout_toRightOf="@+id/tv_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="20dp"
+                    android:layout_height="15dp"/>
+
+                <ImageView
+                    android:id="@+id/iv_vip2"
+                    android:layout_toRightOf="@+id/iv_vip1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="20dp"
+                    android:layout_height="15dp"/>
+                <ImageView
+                    android:layout_toRightOf="@+id/iv_vip2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="20dp"
+                    android:layout_height="15dp"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:id="@+id/tv_position"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/textcolorgray"
+                    android:text="营销部部长"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_attention"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_shape_round"
+                android:textSize="14sp"
+                android:text="+关注"
+                android:layout_width="60dp"
+                android:layout_height="25dp"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:background="@color/linecolorgray"
+        android:layout_width="match_parent"
+        android:layout_height="1px">
+
+    </LinearLayout>
+
+</LinearLayout>

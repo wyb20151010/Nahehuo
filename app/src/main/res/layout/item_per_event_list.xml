@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_below="@+id/card"
+        android:background="@color/back_gray"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"></LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="1dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:background="@color/jobtitlecolor"
+                android:layout_width="match_parent"
+                android:layout_height="34dp">
+
+                <TextView
+                    android:id="@+id/tv_event_title"
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:text="大工厂------专注于打造“服饰生态圈”的互联网公司"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="43dp">
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:textSize="14sp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bg_cf_border_green"
+                    android:layout_margin="4dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/green"
+                    android:text="进行中"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/linecolorgray"
+                android:layout_width="match_parent"
+                android:layout_height="1px">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_person"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+
+                <com.makeramen.RoundedImageView
+                    android:id="@+id/iv_per_avater"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    app:corner_radius="22dp"/>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_per_name"
+                        android:layout_marginTop="15dp"
+                        android:text="樱桃小王子"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_per_pos"
+                        android:layout_marginTop="4dp"
+                        android:text="后台产品经理 - 今翌信息科技（上海）有限公司"
+                        android:textColor="@color/textcolorgray"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/linecolorgray"
+                android:layout_width="match_parent"
+                android:layout_height="1px">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/my_event_edit_time"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="centerCrop"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_event_time"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/textcolorgray"
+                        android:text="2015-12-31 05:00 至 2016-02-01"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/my_event_edit_number"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="centerCrop"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_event_number"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/textcolorgray"
+                        android:text="1000人"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_tag"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/checked_bg_red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginLeft="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp">
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:textSize="13sp"
+                            android:id="@+id/tv_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#FFFFFF"
+                            android:text="200元/人"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                    <ImageView
+                        android:src="@drawable/my_event_address"
+                        android:id="@+id/iv_event_location"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="centerCrop"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_event_location"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/iv_event_location"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/textcolorgray"
+                        android:text="上海市松江区九新公路341弄28号7层"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_event_distance"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/textcolorgrayhint"
+                        android:textSize="11sp"
+                        android:layout_alignParentRight="true"
+                        android:text="362m"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/linecolorgray"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp">
+
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp">
+
+                        <ImageView
+                            android:src="@drawable/my_event_share"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_event_watch_num"
+                            android:text="分享"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="11sp"
+                            android:textColor="@color/textcolorgrayhint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <LinearLayout
+                    android:background="@color/linecolorgray"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"></LinearLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp">
+
+                        <ImageView
+                            android:src="@drawable/my_event_edit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_event_com_num"
+                            android:text="编辑"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="11sp"
+                            android:textColor="@color/textcolorgrayhint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                 <LinearLayout
+                     android:background="@color/linecolorgray"
+                     android:layout_marginBottom="10dp"
+                     android:layout_marginTop="10dp"
+                     android:layout_width="1px"
+                     android:layout_height="match_parent"></LinearLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp">
+
+                        <ImageView
+                            android:src="@drawable/my_event_edit_number1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_event_per_num"
+                            android:text="名单"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="11sp"
+                            android:textColor="@color/textcolorgrayhint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <LinearLayout
+        android:layout_below="@+id/card"
+        android:background="@color/back_gray"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"></LinearLayout>
+</LinearLayout>

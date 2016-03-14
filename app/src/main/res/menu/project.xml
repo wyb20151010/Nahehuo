@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/start_pro"
+        android:title="发起项目"
+        android:icon="@drawable/ic_discuss"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/search_pro"
+        android:title="搜索项目"
+        android:icon="@drawable/ic_discuss"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/my_pro"
+        android:title="我的项目"
+        android:icon="@drawable/ic_discuss"
+        app:showAsAction="never"></item>
+    <item
+        android:id="@+id/apply_partner"
+        android:title="申请合伙人"
+        android:icon="@drawable/ic_discuss"
+        app:showAsAction="never"></item>
+</menu>

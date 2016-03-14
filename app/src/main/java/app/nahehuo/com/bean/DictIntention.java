@@ -1,0 +1,45 @@
+package app.nahehuo.com.bean;
+
+import com.lidroid.xutils.db.annotation.Column;
+import com.lidroid.xutils.db.annotation.Id;
+import com.lidroid.xutils.db.annotation.Table;
+
+/**
+ * Created by Administrator on 2016/3/10.
+ */
+@Table(name = "intentiondict") public class DictIntention {
+
+    @Id private int id;
+    @Column private String value;
+    @Column private String name;
+
+
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getValue() {
+        return value;
+    }
+
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

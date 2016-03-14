@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/toolbar1"
+        layout="@layout/toolbar_project"></include>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1.63"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:text="按照你的订阅条件，为你推荐更多机会"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:id="@+id/ll_fulltime"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/checked_bg_blue_border2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_fulltime"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:text="全职"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_study"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/checked_bg_blue_border2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="15sp"
+                    android:id="@+id/tv_study"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:text="学习"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:background="@color/backgroundgray"
+                android:layout_width="@dimen/width_76_80"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_ind_home"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:text="行业"/>
+
+                <TextView
+                    android:id="@+id/tv_ind"
+                    android:layout_toRightOf="@+id/tv_ind_home"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/textcolorgrayhint"
+                    android:textSize="15sp"
+                    android:hint="点击选择..."/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:background="@color/backgroundgray"
+                android:layout_width="@dimen/width_76_80"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_cate_home"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:text="类别"/>
+
+                <TextView
+                    android:id="@+id/tv_cate"
+                    android:layout_toRightOf="@+id/tv_cate_home"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/textcolorgrayhint"
+                    android:textSize="15sp"
+                    android:hint="点击选择..."/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:background="@color/backgroundgray"
+                android:layout_width="@dimen/width_76_80"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_city_head"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:text="城市"/>
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    android:layout_toRightOf="@+id/tv_city_head"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/textcolorgrayhint"
+                    android:textSize="15sp"
+                    android:hint="点击选择..."/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:background="@color/backgroundgray"
+                android:layout_width="@dimen/width_76_80"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_salary_head"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:text="薪水"/>
+
+                <TextView
+                    android:id="@+id/tv_salary"
+                    android:layout_toRightOf="@+id/tv_salary_head"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/textcolorgrayhint"
+                    android:textSize="15sp"
+                    android:hint="点击选择..."/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:background="@color/backgroundgray"
+                android:layout_width="@dimen/width_76_80"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_state"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:text="状态"/>
+
+                <TextView
+                    android:id="@+id/tv_intention"
+                    android:layout_toRightOf="@+id/tv_state"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/textcolorgrayhint"
+                    android:textSize="15sp"
+                    android:hint="点击选择..."/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <RelativeLayout
+                android:layout_centerHorizontal="true"
+                android:background="@color/backgroundgray"
+                android:layout_width="@dimen/width_76_80"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_email_head"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:text="邮箱"/>
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:background="@null"
+                    android:layout_toRightOf="@+id/tv_email_head"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    android:textColorHint="@color/textcolorgrayhint"
+                    android:hint="输入接收订阅邮件的邮箱"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_weight="2.7"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <RelativeLayout
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/width_70_80"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_save"
+                android:textSize="17sp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/bg_shape_round"
+                android:textColor="@color/white"
+                android:text="保存"
+                android:layout_width="@dimen/height_18_80"
+                android:layout_height="@dimen/height_5_80"/>
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:textSize="17sp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_shape_round"
+                android:textColor="@color/white"
+                android:text="取消"
+                android:layout_width="@dimen/height_18_80"
+                android:layout_height="@dimen/height_5_80"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

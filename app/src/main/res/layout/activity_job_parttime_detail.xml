@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <include
+        layout="@layout/toolbar_project"
+        ></include>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/part_job_name"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="16sp"
+                    android:text="哪合伙兼职运营中心"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/part_job_location"
+                    android:textColor="@color/textcolorgrayhint"
+                    android:textSize="14sp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="前天 23:30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:background="@color/linecolorgray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px"></LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <TextView
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="300一天，12月31日-1月2号世贸人员活动礼仪"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/checked_bg_green1"
+                        android:text="上海"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/checked_bg_blue1"
+                        android:text="礼仪模特"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <TextView
+                    android:lineSpacingExtra="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="哈尔滨啤酒推广活动，地址：广州龙洞士街，哈尔滨啤酒推广活动，据该紧急通告称，因为盛世财富受到本地区P2P行业市场状况以及近期市场对其负面消息影响，造成该平台投资者出现较为集中的挤兑现象，导致融资方资金发生提现困难，难以兑付投资者本金和利息."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_contacts"
+                android:visibility="gone"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+
+                <LinearLayout
+                    android:background="#F3F3F3"
+                    android:paddingBottom="15dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp">
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:layout_marginLeft="10dp"
+                            android:layout_centerVertical="true"
+                            android:textSize="15sp"
+                            android:text="联系方式"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:background="@color/linecolorgray"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px">
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:text="直接打我的手机：13915170369"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:text="或者发微信：zhaolaiqiang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:text="其他联系方式"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:text="邮箱：nishengsheng@kingyi.com"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:text="QQ：154332563"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <LinearLayout
+                    android:background="@color/linecolorgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp">
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/textcolorgrayhint"
+                        android:text="浏览999次"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.zhy.view.flowlayout.TagFlowLayout
+                            android:id="@+id/tfl_like"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></com.zhy.view.flowlayout.TagFlowLayout>
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/textcolorgrayhint"
+                            android:text="999人点赞"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="@color/linecolorgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px">
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="16sp"
+                        android:text="全部评价"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tv_open"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="展开"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <LinearLayout
+
+                    android:background="@color/linecolorgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px">
+
+                </LinearLayout>
+              <LinearLayout
+                  android:id="@+id/ll_comment"
+                  android:layout_marginTop="15dp"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <TextView
+
+                      android:layout_marginLeft="10dp"
+                      android:textColor="@color/black"
+                      android:textSize="16sp"
+                      android:text="活动评价"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
+
+                  <app.nahehuo.com.view.MyListView
+                      android:divider="@null"
+                      android:padding="10dp"
+                      android:id="@+id/mlv_comment"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+
+                  </app.nahehuo.com.view.MyListView>
+
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+
+                      <TextView
+                          android:id="@+id/tv_close"
+                          android:layout_centerInParent="true"
+                          android:text="收起"
+                          android:textSize="12sp"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+                  </RelativeLayout>
+              </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="#F3F3F3"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_10_80">
+
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/btn_contact"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:text="立即联系"
+                    android:background="@drawable/bg_shape_round"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="@dimen/width_65_80"
+                    android:layout_height="@dimen/height_5_80"/>
+
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="@dimen/height_5_80"
+                    android:layout_height="@dimen/height_5_80"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#595959">
+
+    <RelativeLayout
+        android:layout_marginTop="77dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.makeramen.RoundedImageView
+            android:layout_centerHorizontal="true"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img1"
+            app:corner_radius="42.5dp"
+
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_centerHorizontal="true"
+            android:text="李正茂"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_name"
+            android:id="@+id/tv_position"
+            android:layout_centerHorizontal="true"
+            android:text="董事长兼CEO"
+            android:textSize="19sp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:textSize="15sp"
+            android:lineSpacingExtra="8dp"
+            android:textColor="#FFFFFF"
+            android:text="2004年至2008年间，曾担任中国互联网协会副理事长， 2009年至2011年间，曾担任中国通信企业协会副会长；自
+同时，1995年至1999年间，曾担任中国联通在GSMA协会的代表，2003年至2006年间，曾担任中国联通在CDMA发展组（CDMA Development Group）的执行董事；
+2013年9月12日中移动副总裁李正茂表示，大家总是给我们扣的帽子。"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </ScrollView>
+
+</LinearLayout>

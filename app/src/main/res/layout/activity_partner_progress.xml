@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include layout="@layout/toolbar_partner"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="45dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"/>
+
+                <TextView
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="14sp"
+                    android:text="我们正在审核你的合伙人身份，静候佳音！审核结果我们会通知你的"
+                    android:textColor="@color/textcolorgray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:layout_marginTop="45dp"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/btn_login"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:text="邀请好友入伙"
+                    android:background="@drawable/bg_shape_round"
+                    android:layout_width="120dp"
+                    android:layout_height="39dp"/>
+
+                <LinearLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/linecolorgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px">
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_one"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_oval_blue"
+                    android:layout_marginLeft="55dp"
+                    android:textSize="16sp"
+                    android:text="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_toRightOf="@+id/tv_one"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/jobtitlecolor"
+                    android:layout_width="100dp"
+                    android:layout_height="1dp"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_two"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_oval_blue"
+                    android:textSize="16sp"
+                    android:text="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_toRightOf="@+id/tv_two"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/jobtitlecolor"
+                    android:layout_width="100dp"
+                    android:layout_height="1dp"></LinearLayout>
+
+                <TextView
+                    android:layout_marginRight="55dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/tv_three"
+                    android:gravity="center"
+                    android:textColor="@color/jobtitlecolor"
+                    android:background="@drawable/bg_oval_blue_border"
+                    android:textSize="16sp"
+                    android:text="3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <app.nahehuo.com.view.MyListView
+                    android:divider="@null"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/plv_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </app.nahehuo.com.view.MyListView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

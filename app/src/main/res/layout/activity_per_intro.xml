@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_partner">
+    </include>
+
+
+    <RelativeLayout
+        android:background="#f3f3f3"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <EditText
+            android:textColor="@color/textcolorgray"
+            android:id="@+id/et_intro"
+            android:minEms="20"
+            android:padding="5dp"
+            android:textSize="13sp"
+            android:textColorHint="@color/textcolorgrayhint"
+            android:hint="一句话介绍自己，不要超过20字"
+            android:gravity="top"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btn_login"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:text="保存"
+        android:background="@drawable/bg_shape_round"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="@dimen/width_74_80"
+        android:layout_height="@dimen/height_5_80"/>
+</LinearLayout>
