@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import app.nahehuo.com.R;
+import app.nahehuo.com.application.MyApplication;
 import app.nahehuo.com.bean.CompanyCommentDict;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
@@ -98,13 +99,21 @@ public class InterviewExpAdapter extends BaseAdapter {
                     mContext.getResources().getColor(R.color.white));
             viewHolder.tv_tag.setText("接到offer但拒绝 (＞﹏＜)");
         }
-        viewHolder.tv_username.setText(item.getUsername());
+
         viewHolder.tv_score.setText(item.getScore());
         viewHolder.tv_comment_title.setText("["+item.getComment_title()+"]");
         viewHolder.tv_comment_content.setText(item.getComment_content());
         viewHolder.tv_comment_time.setText(item.getComment_time());
         ImageLoader.getInstance()
-                   .displayImage(item.getAvater(), viewHolder.iv_avater);
+                   .displayImage(item.getAvater(), viewHolder.iv_avater,
+                           MyApplication.getDisplayDefaultOption());
+        if(item.getAnony()==1){
+            viewHolder.tv_username.setText(item.getUsername());
+
+        }else if(item.getAnony()==2){
+            viewHolder.tv_username.setText("匿名");
+            //TODO 图标换成匿名图片
+        }
         return v;
     }
 

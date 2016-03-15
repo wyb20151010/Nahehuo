@@ -113,7 +113,7 @@ public class NetInterviewExp {
             private String content;
             private String size;
             private String industry;
-            private int avgcomment;
+            private float avgcomment;
 
 
             public void setCid(int cid) { this.cid = cid;}
@@ -156,7 +156,7 @@ public class NetInterviewExp {
             }
 
 
-            public void setAvgcomment(int avgcomment) {
+            public void setAvgcomment(float avgcomment) {
                 this.avgcomment = avgcomment;
             }
 
@@ -197,7 +197,7 @@ public class NetInterviewExp {
             public String getIndustry() { return industry;}
 
 
-            public int getAvgcomment() { return avgcomment;}
+            public float getAvgcomment() { return avgcomment;}
         }
 
         public static class InterviewEntity {

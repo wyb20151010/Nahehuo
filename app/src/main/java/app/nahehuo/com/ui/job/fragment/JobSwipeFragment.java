@@ -95,8 +95,7 @@ public class JobSwipeFragment extends Fragment implements View.OnClickListener {
 
     private void findJobRecom() {
 
-
-        Log.d("TAG",GlobalVariables.access_token+"find_access");
+        Log.d("TAG", GlobalVariables.access_token + "find_access");
         recomJobs.clear();
         OkHttpUtils.get()
                    .url(GlobalVariables.JOB_RECOMMEND)
@@ -105,7 +104,7 @@ public class JobSwipeFragment extends Fragment implements View.OnClickListener {
                    .build()
                    .execute(new GsonCallBack<NetRecomJob>(NetRecomJob.class) {
                        @Override public void onResponse(NetRecomJob response) {
-                           Log.d("TAG",response.getMessage());
+                           Log.d("TAG", response.getMessage());
                            if (response.getCode() == 200) {
 
                                for (int i = 0;
@@ -209,7 +208,7 @@ public class JobSwipeFragment extends Fragment implements View.OnClickListener {
         mRotateLoading.start();
 
        /* if (!TextUtils.isEmpty(GlobalVariables.UID)) {*/
-            mHandler.sendEmptyMessage(JOB_RECOMMEND);
+        mHandler.sendEmptyMessage(JOB_RECOMMEND);
         /*}
         else {
             startActivity(new Intent(mContext, LoginActivity.class));
@@ -283,13 +282,15 @@ public class JobSwipeFragment extends Fragment implements View.OnClickListener {
                          .setOnClickListener(new View.OnClickListener() {
                              @Override public void onClick(View v) {
 
-                                 Intent intent=new Intent(mContext,
+                                 Intent intent = new Intent(mContext,
                                          JobDetailActivity.class);
-                                 intent.putExtra("jid",recomJobs.get(mIndex)
-                                         .getJid()+"");
+                                 intent.putExtra("jid",
+                                         recomJobs.get(mIndex).getJid() + "");
+                                 intent.putExtra("position",
+                                         recomJobs.get(mIndex).getPosition());
                                  startActivity(intent);
-                                 mainActivity.overridePendingTransition(R
-                                                 .anim.push_left_in,
+                                 mainActivity.overridePendingTransition(
+                                         R.anim.push_left_in,
                                          R.anim.push_left_out);
                              }
                          });

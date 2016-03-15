@@ -25,9 +25,10 @@ public class JobDetailActivity extends AppCompatActivity
     protected Toolbar mToolbar;
     protected TextView tv_job, tv_company;
     private FrameLayout fl_job_detail;
-    private String jid;
+    private String jid,position;
     private InterviewExpFragment expFragment;
     private JobDetailFragment detailFragment;
+
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +40,12 @@ public class JobDetailActivity extends AppCompatActivity
         Intent intent = getIntent();
         if (!TextUtils.isEmpty(intent.getStringExtra("jid"))) {
             jid = intent.getStringExtra("jid");
+            position=intent.getStringExtra("position");
         }
         initToolbar();
         tv_job.setText("职位详情");
         tv_company.setText("面经(99+)");
         fl_job_detail = (FrameLayout) findViewById(R.id.fl_job_detail);
-
-
 
         detailFragment = new JobDetailFragment();
         Bundle bundle = new Bundle();
@@ -54,6 +54,7 @@ public class JobDetailActivity extends AppCompatActivity
         expFragment = new InterviewExpFragment();
         Bundle bundle1 = new Bundle();
         bundle1.putString("jid", jid);
+        bundle1.putString("position",position);
         expFragment.setArguments(bundle1);
         replaceFragment(R.id.fl_job_detail, detailFragment);
     }
@@ -99,7 +100,6 @@ public class JobDetailActivity extends AppCompatActivity
                 tv_job.setTextSize(20);
                 break;
             case R.id.tv_company:
-
                 replaceFragment(R.id.fl_job_detail, expFragment);
                 tv_company.setTextColor(getResources().getColor(R.color.white));
                 tv_company.setTextSize(20);

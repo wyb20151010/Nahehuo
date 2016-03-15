@@ -184,11 +184,13 @@ public class JobPositionActivity extends AppCompatActivity
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent=new Intent(mContext,
+                        Intent intent = new Intent(mContext,
                                 JobDetailActivity.class);
 
-                        intent.putExtra("jid",mJobListDict.get(position-1)
-                                                       .getJid()+"");
+                        intent.putExtra("jid",
+                                mJobListDict.get(position - 1).getJid() + "");
+                        intent.putExtra("position",
+                                mJobListDict.get(position - 1).getPosition());
                         startActivity(intent);
                         overridePendingTransition(R.anim.push_left_in,
                                 R.anim.push_left_out);
@@ -218,6 +220,11 @@ public class JobPositionActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.refresh:
+                startActivity(new Intent(mContext, JobSearchActivity.class));
+                overridePendingTransition(R.anim.push_left_in,
+                        R.anim.push_left_out);
                 break;
         }
         return super.onOptionsItemSelected(item);

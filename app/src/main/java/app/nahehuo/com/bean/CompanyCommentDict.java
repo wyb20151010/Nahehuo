@@ -12,6 +12,17 @@ public class CompanyCommentDict {
     private String comment_content;
     private String comment_time;
     private String avater;
+    private int anony;
+
+
+    public int getAnony() {
+        return anony;
+    }
+
+
+    public void setAnony(int anony) {
+        this.anony = anony;
+    }
 
 
     public String getUsername() {

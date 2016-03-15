@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import app.nahehuo.com.R;
 import app.nahehuo.com.application.MyApplication;
@@ -28,7 +29,9 @@ import app.nahehuo.com.ui.job.JobDeliverySuccessActivity;
 import app.nahehuo.com.ui.job.JobDetailActivity;
 import app.nahehuo.com.ui.job.popup.PopupCommon;
 import app.nahehuo.com.util.MyToast;
+import app.nahehuo.com.util.ShareUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.victor.loading.rotate.RotateLoading;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -52,6 +55,8 @@ public class JobDetailFragment extends Fragment
     private Button btn_delivery_resume;
     private ImageView iv_logo;
     private ProperRatingBar upperRatingBar;
+    private RotateLoading mLoading;
+    private LinearLayout ll_content;
 
     private TagAdapter<String> adapter;
     private Context mContext;
@@ -63,6 +68,7 @@ public class JobDetailFragment extends Fragment
     private boolean isApply;
     private PopupCommon mPopupCommon;
     private JobDetailActivity mJobDetailActivity;
+    private String logo;
 
     private Handler mHandler = new Handler() {
 
@@ -108,9 +114,6 @@ public class JobDetailFragment extends Fragment
                 jid = bundle.getString("jid");
             }
         }
-        else {
-            jid = GlobalVariables.last_jid;
-        }
         showJobDetail();
         mHandler.sendEmptyMessage(SHOW_JOB_DETAIL);
         return v;
@@ -133,7 +136,9 @@ public class JobDetailFragment extends Fragment
         tv_website = (TextView) v.findViewById(R.id.tv_website);
         upperRatingBar = (ProperRatingBar) v.findViewById(R.id.upperRatingBar);
         iv_logo = (ImageView) v.findViewById(R.id.iv_logo);
-
+        mLoading = (RotateLoading) v.findViewById(R.id.loading);
+        ll_content= (LinearLayout) v.findViewById(R.id.ll_content);
+        mLoading.start();
         btn_delivery_resume.setOnClickListener(this);
     }
 
@@ -162,18 +167,6 @@ public class JobDetailFragment extends Fragment
     }
 
 
-    @Override public void onResume() {
-        GlobalVariables.last_jid = jid;
-        super.onResume();
-    }
-
-
-    @Override public void onStop() {
-        GlobalVariables.last_jid = jid;
-        super.onStop();
-    }
-
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.job_detail, menu);
@@ -184,7 +177,8 @@ public class JobDetailFragment extends Fragment
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.refresh:
+            case R.id.share:
+                ShareUtil.sharePicture(mJobDetailActivity, logo, "哪合伙");
                 break;
             case R.id.collect:
                 if (isApply) {
@@ -291,6 +285,8 @@ public class JobDetailFragment extends Fragment
                        @Override public void onResponse(NetJobDetail response) {
                            if (response.getCode() == 200) {
                                initData(response);
+                               mLoading.stop();
+                               ll_content.setVisibility(View.VISIBLE);
                            }
                            else {
                                MyToast.showToast(mContext,
@@ -339,7 +335,7 @@ public class JobDetailFragment extends Fragment
             }
         }
         adapter.notifyDataChanged();
-
+        logo = response.getData().getCompany().getLogo();
         ImageLoader.getInstance()
                    .displayImage(response.getData().getCompany().getLogo(),
                            iv_logo, MyApplication.getDisplayDefaultOption());
@@ -367,7 +363,7 @@ public class JobDetailFragment extends Fragment
             btn_delivery_resume.setClickable(false);
         }
         upperRatingBar.setRating(
-                response.getData().getCompany().getAvgcomment());
+                (int) response.getData().getCompany().getAvgcomment());
         isApply = response.getData().getJob().getIsapply() == 0 ? false : true;
     }
 }

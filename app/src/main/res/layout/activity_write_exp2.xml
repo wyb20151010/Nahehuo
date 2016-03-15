@@ -36,7 +36,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="16sp"
             android:textColor="@color/textcolorgray"
-            android:text="未接到offer(－︿－)"
+            android:text="未接到offer ⊙︿⊙"
             android:background="@drawable/back_shape_round"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
@@ -50,7 +50,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="16sp"
             android:textColor="@color/textcolorgray"
-            android:text="接到offer但拒绝(＞﹏＜)"
+            android:text="接到offer但拒绝/(ㄒoㄒ)/"
             android:background="@drawable/back_shape_round"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
@@ -149,10 +149,12 @@
         </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_one_word"
             android:layout_width="match_parent"
             android:layout_height="35dp">
 
             <TextView
+
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:textSize="15sp"
@@ -162,11 +164,14 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:textColor="@color/textcolorgray"
+                android:textColorHint="@color/textcolorgrayhint"
+                android:id="@+id/tv_oneword"
                 android:layout_marginRight="20dp"
                 android:textSize="14sp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:text="点击选择..."
+                android:hint="点击选择..."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
@@ -178,6 +183,7 @@
             android:layout_height="100dp">
 
             <EditText
+                android:id="@+id/et_descp"
                 android:padding="5dp"
                 android:textSize="13sp"
                 android:textColorHint="@color/textcolorgrayhint"

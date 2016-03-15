@@ -90,7 +90,6 @@ public class PopupFillInfo extends BasePopupWindow
     @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_cancel:
-                dismiss();
                 mSetOnSelect.onSelect();
                 break;
         }
