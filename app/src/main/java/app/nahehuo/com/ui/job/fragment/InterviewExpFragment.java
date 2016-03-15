@@ -4,36 +4,66 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import app.nahehuo.com.R;
 import app.nahehuo.com.adapter.InterviewExpAdapter;
+import app.nahehuo.com.base.GlobalVariables;
 import app.nahehuo.com.bean.CompanyCommentDict;
+import app.nahehuo.com.bean.NetInterviewExp;
+import app.nahehuo.com.network.GetCallBack;
+import app.nahehuo.com.network.HttpConnectService;
 import app.nahehuo.com.ui.job.JobDetailActivity;
 import app.nahehuo.com.ui.job.WriteInterExpActivity2;
+import app.nahehuo.com.util.MyToast;
+import app.nahehuo.com.util.VeDate;
+import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by WYB on 2016/1/8.
  */
 public class InterviewExpFragment extends Fragment
-        implements View.OnClickListener {
+        implements View.OnClickListener,
+        GetCallBack,
+        PullToRefreshBase.OnRefreshListener<ListView> {
 
     private PullToRefreshListView plv_inter_exp;
     private InterviewExpAdapter mInterviewExpAdapter;
-    private List<CompanyCommentDict> mCommentDicts = new ArrayList<>();
+
     private Context mContext;
     private FloatingActionButton fab_comment;
     private JobDetailActivity mJobDetailActivity;
+    private List<CompanyCommentDict> mCommentDicts = new ArrayList<>();
+    private int pageindex;
+    private String jid;
+    private static final int FIND_INTERVIEW = 0;
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case FIND_INTERVIEW:
+                    findInterview();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
 
     @Override public void onAttach(Activity activity) {
@@ -52,13 +82,28 @@ public class InterviewExpFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_interview_exp, null);
         mContext = getActivity();
-        plv_inter_exp = (PullToRefreshListView) v.findViewById(
-                R.id.plv_inter_exp);
-        initData();
-        initPlv();
+        Bundle bundle;
+        if (getArguments() != null) {
+            bundle = getArguments();
+            if (!TextUtils.isEmpty(bundle.getString("jid"))) {
+                jid = bundle.getString("jid");
+            }
+        }
+
+        Log.d("TAG", "InterviewExpFragment:" + jid);
+
+        initPlv(v);
+        initView(v);
+        pageindex = 1;
+        mHandler.sendEmptyMessage(FIND_INTERVIEW);
+
+        return v;
+    }
+
+
+    private void initView(View v) {
         fab_comment = (FloatingActionButton) v.findViewById(R.id.fab_comment);
         fab_comment.setOnClickListener(this);
-        return v;
     }
 
 
@@ -69,46 +114,13 @@ public class InterviewExpFragment extends Fragment
     }
 
 
-    private void initData() {
-        CompanyCommentDict commentDict = new CompanyCommentDict();
-        commentDict.setAvater(
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg");
-        commentDict.setScore("职位相符: 4.5  面试打分: 4.0");
-        commentDict.setUsername("张三李四");
-        commentDict.setState(0);
-        commentDict.setComment_title("[ 面试官很nice,HR很sb]");
-        commentDict.setComment_content(
-                "研究录取了患者治疗前及治疗三周后的临床病徵、临床乾燥症的严重度评分和皮肤镜图像。");
-        commentDict.setComment_time("2015-12-12 15:33");
-        mCommentDicts.add(commentDict);
-        CompanyCommentDict commentDict1 = new CompanyCommentDict();
-        commentDict1.setAvater(
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg");
-        commentDict1.setScore("职位相符: 4.5  面试打分: 4.0");
-        commentDict1.setUsername("王耀彬");
-        commentDict1.setState(1);
-        commentDict1.setComment_title("[ 面试官很hot]");
-        commentDict1.setComment_content("我还需要继续努力啊，才能进步");
-        commentDict1.setComment_time("2015-12-12 15:33");
-        mCommentDicts.add(commentDict1);
-
-        CompanyCommentDict commentDict2 = new CompanyCommentDict();
-        commentDict2.setAvater(
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg");
-        commentDict2.setScore("职位相符: 4.5  面试打分: 5.0");
-        commentDict2.setUsername("李蒙");
-        commentDict2.setState(2);
-        commentDict2.setComment_title("[ 太无语了我要哭了]");
-        commentDict2.setComment_content(
-                "庙堂之上，朽木为官；殿陛之间，禽兽食禄。以至狼心狗肺之辈汹汹当朝，奴颜婢膝之徒纷纷秉政，以致社稷变为丘墟，苍生饱受涂炭之苦 ");
-        commentDict2.setComment_time("2015-12-12 15:33");
-        mCommentDicts.add(commentDict2);
-    }
-
-
-    private void initPlv() {
-        mInterviewExpAdapter = new InterviewExpAdapter(mCommentDicts, mContext);
+    private void initPlv(View v) {
+        plv_inter_exp = (PullToRefreshListView) v.findViewById(
+                R.id.plv_inter_exp);
         plv_inter_exp.setMode(PullToRefreshBase.Mode.BOTH);
+        plv_inter_exp.setOnRefreshListener(this);
+        mInterviewExpAdapter = new InterviewExpAdapter(mCommentDicts, mContext);
+
         plv_inter_exp.setAdapter(mInterviewExpAdapter);
     }
 
@@ -120,12 +132,6 @@ public class InterviewExpFragment extends Fragment
     }
 
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-
     @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_comment:
@@ -134,6 +140,109 @@ public class InterviewExpFragment extends Fragment
                 mJobDetailActivity.overridePendingTransition(
                         R.anim.push_left_in, R.anim.push_left_out);
                 break;
+        }
+    }
+
+
+    private void findInterview() {
+        HttpConnectService connectService = new HttpConnectService();
+        connectService.setUrl(GlobalVariables.JOB_INTERVIEW + "?access_token=" +
+                GlobalVariables.access_token + "&device=" +
+                GlobalVariables.device + "&jid=" + jid + "&pageindex=" +
+                pageindex + "&pagesize=" + GlobalVariables.pagesize);
+        connectService.setResultCode(FIND_INTERVIEW);
+        connectService.connectGet(mContext, this, "");
+    }
+
+
+    @Override public void getCallBack(int resultCode, String result) {
+        plv_inter_exp.onRefreshComplete();
+        if (pageindex == 1) {
+            mCommentDicts.clear();
+        }
+        try {
+            Gson gson = new Gson();
+            NetInterviewExp response = gson.fromJson(result,
+                    NetInterviewExp.class);
+            JSONObject jsonObject = new JSONObject(result);
+            int code = jsonObject.getInt("code");
+            if (code == 200) {
+                if (resultCode == FIND_INTERVIEW) {
+                    for (int i = 0;
+                         i < response.getData().getInterview().size();
+                         i++) {
+                        CompanyCommentDict dict = new CompanyCommentDict();
+                        dict.setComment_time(VeDate.formatHelpReplyTime(response
+                                .getData()
+                                .getInterview()
+                                .get(i)
+                                .getCreated()));
+                        dict.setComment_title(response.getData()
+                                                      .getInterview()
+                                                      .get(i)
+                                                      .getOneword());
+                        dict.setComment_content(response.getData()
+                                                        .getInterview()
+                                                        .get(i)
+                                                        .getDescp());
+                        dict.setUsername(response.getData()
+                                                 .getInterview()
+                                                 .get(i)
+                                                 .getUsername());
+                        StringBuffer buffer = new StringBuffer();
+                        buffer.append("职位相符:");
+                        buffer.append(response.getData()
+                                              .getInterview()
+                                              .get(i)
+                                              .getScore());
+                        buffer.append(" 面试打分:");
+                        buffer.append(response.getData()
+                                              .getInterview()
+                                              .get(i)
+                                              .getJobmatch());
+                        dict.setScore(buffer.toString());
+                        if ("接到offer并入职( ^_^ )".equals(response.getData()
+                                                               .getInterview()
+                                                               .get(i)
+                                                               .getResult())) {
+                            dict.setState(0);
+                        }
+                        else if ("未接到offer ⊙︿⊙".equals(response.getData()
+                                                               .getInterview()
+                                                               .get(i)
+                                                               .getResult())) {
+                            dict.setState(1);
+                        }
+                        else {
+                            dict.setState(2);
+                        }
+                        dict.setAvater(response.getData()
+                                               .getInterview()
+                                               .get(i)
+                                               .getAvatar());
+                        mCommentDicts.add(dict);
+                    }
+                    mInterviewExpAdapter.notifyDataSetChanged();
+                }
+            }
+            else {
+                MyToast.showToast(mContext, response.getMessage());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+        if (refreshView.isHeaderShown()) {
+            pageindex = 1;
+            mCommentDicts.clear();
+            mHandler.sendEmptyMessage(FIND_INTERVIEW);
+        }
+        else if (refreshView.isFooterShown()) {
+            pageindex++;
+            mHandler.sendEmptyMessage(FIND_INTERVIEW);
         }
     }
 }

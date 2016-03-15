@@ -80,7 +80,7 @@ public class InterviewExpAdapter extends BaseAdapter {
                                                                     R.drawable.checked_bg_green));
             viewHolder.tv_tag.setTextColor(
                     mContext.getResources().getColor(R.color.white));
-            viewHolder.tv_tag.setText("接到offer并入职 (^▽^)");
+            viewHolder.tv_tag.setText("接到offer并入职( ^_^ )");
         }
         else if (item.getState() == 1) {
             viewHolder.ll_tag.setBackgroundDrawable(mContext.getResources()
@@ -88,7 +88,7 @@ public class InterviewExpAdapter extends BaseAdapter {
                                                                     R.drawable.checked_bg_red));
             viewHolder.tv_tag.setTextColor(
                     mContext.getResources().getColor(R.color.white));
-            viewHolder.tv_tag.setText("未接到offer (－︿－)");
+            viewHolder.tv_tag.setText("未接到offer ⊙︿⊙");
         }
         else if (item.getState() == 2) {
             viewHolder.ll_tag.setBackgroundDrawable(mContext.getResources()
@@ -100,7 +100,7 @@ public class InterviewExpAdapter extends BaseAdapter {
         }
         viewHolder.tv_username.setText(item.getUsername());
         viewHolder.tv_score.setText(item.getScore());
-        viewHolder.tv_comment_title.setText(item.getComment_title());
+        viewHolder.tv_comment_title.setText("["+item.getComment_title()+"]");
         viewHolder.tv_comment_content.setText(item.getComment_content());
         viewHolder.tv_comment_time.setText(item.getComment_time());
         ImageLoader.getInstance()

@@ -14,7 +14,7 @@ public class GlobalVariables {
     public static String fake_access_token = "";
     public static final String device = "app";
     public static boolean hasNews;
-
+    public static String last_jid = "";
     public static String togbtn_interview = "";
     public static String togbtn_cv_improper = "";
     public static String togbtn_help_reply = "";
@@ -30,7 +30,7 @@ public class GlobalVariables {
     public static final int THEME_HOLO_DARK = 1; // 对话框的风格
     public static int messageNum = 0;
     public static String pay_what = null;
-    public static final int pagesize = 15;
+    public static final String pagesize = "15";
 
     //real api
     //public static final String IP_ADDRESS = "https://api2016.nahehuo.com/";
@@ -102,8 +102,8 @@ public class GlobalVariables {
     // 获取技能证书字典
     public static final String URL_GET_DICTCERT = IP_ADDRESS + "api/dict/cert";
     // 求职意向
-    public static final String
-            URL_GET_DICTINTENTION=IP_ADDRESS+"api/dict/intention";
+    public static final String URL_GET_DICTINTENTION = IP_ADDRESS +
+            "api/dict/intention";
 
     //共通接口-----------------------------------------------------------------------------------------
 
@@ -139,37 +139,29 @@ public class GlobalVariables {
     // 登录
     public static final String LOGIN_GET = IP_ADDRESS + "api/user/login";
 
-
     //job（职位API组）----------------------------------------------------
     // 职位订阅
     public static final String JOB_SUBSCRIPTION = IP_ADDRESS +
             "api/job/subscription";
     // 职位收藏
-    public static final String JOB_COLLECT= IP_ADDRESS +
+    public static final String JOB_COLLECT = IP_ADDRESS +
             "api/job/collect_create";
     // 推荐的职位
-    public static final String JOB_RECOMMEND = IP_ADDRESS +
-            "api/job/recommend";
+    public static final String JOB_RECOMMEND = IP_ADDRESS + "api/job/recommend";
     // 职位列表
-    public static final String JOB_LIST = IP_ADDRESS +
-            "api/job/list";
+    public static final String JOB_LIST = IP_ADDRESS + "api/job/list";
     // 职位搜索
-    public static final String JOB_SEARCH = IP_ADDRESS +
-            "api/job/search";
+    public static final String JOB_SEARCH = IP_ADDRESS + "api/job/search";
     // 职位详情
-    public static final String JOB_DETAIL = IP_ADDRESS +
-            "api/job/detail";
+    public static final String JOB_DETAIL = IP_ADDRESS + "api/job/show";
     // 职位投递申请
-    public static final String JOB_APPLY = IP_ADDRESS +
-            "api/job/apply";
+    public static final String JOB_APPLY = IP_ADDRESS + "api/job/apply";
     // 面试经验列表
-    public static final String JOB_INTERVIEW = IP_ADDRESS +
-            "api/job/interview";
+    public static final String JOB_INTERVIEW = IP_ADDRESS + "api/job/interview";
     // 面经发布
     public static final String JOB_INTERVIEW_CREATE = IP_ADDRESS +
             "api/job/interview/create";
     //job（职位API组）----------------------------------------------------
-
 
     // 隐私设置
     public static final String PRIVACY_SET_POST = IP_ADDRESS +

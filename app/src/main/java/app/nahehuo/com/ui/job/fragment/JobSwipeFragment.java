@@ -266,12 +266,10 @@ public class JobSwipeFragment extends Fragment implements View.OnClickListener {
 
 
             @Override public void onItemClick(View cardView, int index) {
-                Log.d("CardFragment", "卡片点击-");
             }
 
 
             @Override public void onFinished() {
-                Log.d("CardFragment", "finished");
                 slidePanel.setVisibility(View.INVISIBLE);
                 ll_last_content.setVisibility(View.VISIBLE);
             }
@@ -284,8 +282,15 @@ public class JobSwipeFragment extends Fragment implements View.OnClickListener {
                          .findViewById(R.id.ll_content)
                          .setOnClickListener(new View.OnClickListener() {
                              @Override public void onClick(View v) {
-                                 startActivityForResult(new Intent(mContext,
-                                         JobDetailActivity.class), 1);
+
+                                 Intent intent=new Intent(mContext,
+                                         JobDetailActivity.class);
+                                 intent.putExtra("jid",recomJobs.get(mIndex)
+                                         .getJid()+"");
+                                 startActivity(intent);
+                                 mainActivity.overridePendingTransition(R
+                                                 .anim.push_left_in,
+                                         R.anim.push_left_out);
                              }
                          });
         }

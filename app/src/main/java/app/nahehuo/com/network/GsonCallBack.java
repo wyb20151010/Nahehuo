@@ -23,6 +23,7 @@ public class GsonCallBack<T> extends Callback<T> {
 
     @Override public T parseNetworkResponse(Response response)
             throws IOException {
+
         return mGson.fromJson(response.body().string(), mClass);
     }
 

@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import app.nahehuo.com.R;
+import app.nahehuo.com.application.MyApplication;
 import app.nahehuo.com.bean.RecomJob;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -36,7 +37,7 @@ import java.util.List;
     private FloatingActionButton fab_add;
     private List<String> needs = new ArrayList<>();
     private List<String> wants = new ArrayList<>();
-    private String jobType,work_exp;
+    private String jobType, work_exp, edu_exp, finance;
     private Context mContext;
 
 
@@ -67,23 +68,29 @@ import java.util.List;
 
     public void fillData(RecomJob itemData) {
         jobType = itemData.getType() == 1 ? "全职" : "实习";
-        work_exp=itemData.getWorkexp().equals("0")?"工作经验不限":itemData.getWorkexp();
-
+        work_exp = itemData.getWorkexp().equals("0")
+                   ? "工作经验不限"
+                   : itemData.getWorkexp();
+        edu_exp = itemData.getEdu().equals("0") ? "教育经验不限" : itemData.getEdu();
+        finance = itemData.getFinancle().equals("0")
+                  ? "未融资"
+                  : itemData.getFinancle();
         needs.add(jobType);
         needs.add(itemData.getPositiontype());
-        needs.add(itemData.getEdu());
+        needs.add(edu_exp);
         needs.add(itemData.getAttraction());
 
         wants.add(itemData.getIndustry());
         wants.add(itemData.getSize());
-        wants.add(itemData.getFinancle());
-        ImageLoader.getInstance().displayImage(itemData.getLogo(), iv_title);
+        wants.add(finance);
+        ImageLoader.getInstance().displayImage(itemData.getLogo(), iv_title,
+                MyApplication.getDisplayDefaultOption());
         tv_position.setText(itemData.getPosition());
         tv_company.setText(itemData.getCompany() + "");
         tv_wage.setText(
                 itemData.getWagemin() + "k-" + itemData.getWagemax() + "k");
         tv_city.setText(itemData.getCity());
-        tv_work_year.setText(itemData.getWorkexp());
+        tv_work_year.setText(work_exp);
         fl_job_detailone.setAdapter(new TagAdapter(needs) {
             @Override
             public View getView(FlowLayout parent, int position, Object o) {

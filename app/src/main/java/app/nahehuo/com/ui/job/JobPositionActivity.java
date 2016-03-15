@@ -147,9 +147,7 @@ public class JobPositionActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_position);
         mContext = this;
-        plv_job_list = (PullToRefreshListView) findViewById(R.id.plv_job_list);
-        plv_job_list.setMode(PullToRefreshBase.Mode.BOTH);
-        plv_job_list.setOnRefreshListener(this);
+
         tv_title = (TextView) findViewById(R.id.tv_title);
         initToolbar();
         tv_title.setText("职位");
@@ -177,16 +175,21 @@ public class JobPositionActivity extends AppCompatActivity
 
 
     private void initPlv() {
-        mJobListAdapter = new JobListAdapter(mContext, mJobListDict);
         plv_job_list = (PullToRefreshListView) findViewById(R.id.plv_job_list);
         plv_job_list.setMode(PullToRefreshBase.Mode.BOTH);
+        plv_job_list.setOnRefreshListener(this);
+        mJobListAdapter = new JobListAdapter(mContext, mJobListDict);
         plv_job_list.setAdapter(mJobListAdapter);
         plv_job_list.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        startActivity(
-                                new Intent(mContext, JobDetailActivity.class));
+                        Intent intent=new Intent(mContext,
+                                JobDetailActivity.class);
+
+                        intent.putExtra("jid",mJobListDict.get(position-1)
+                                                       .getJid()+"");
+                        startActivity(intent);
                         overridePendingTransition(R.anim.push_left_in,
                                 R.anim.push_left_out);
                     }
