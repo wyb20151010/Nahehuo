@@ -68,7 +68,7 @@ public class JobDetailFragment extends Fragment
     private boolean isApply;
     private PopupCommon mPopupCommon;
     private JobDetailActivity mJobDetailActivity;
-    private String logo;
+    private String logo, position, city;
 
     private Handler mHandler = new Handler() {
 
@@ -137,7 +137,7 @@ public class JobDetailFragment extends Fragment
         upperRatingBar = (ProperRatingBar) v.findViewById(R.id.upperRatingBar);
         iv_logo = (ImageView) v.findViewById(R.id.iv_logo);
         mLoading = (RotateLoading) v.findViewById(R.id.loading);
-        ll_content= (LinearLayout) v.findViewById(R.id.ll_content);
+        ll_content = (LinearLayout) v.findViewById(R.id.ll_content);
         mLoading.start();
         btn_delivery_resume.setOnClickListener(this);
     }
@@ -178,7 +178,8 @@ public class JobDetailFragment extends Fragment
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share:
-                ShareUtil.sharePicture(mJobDetailActivity, logo, "哪合伙");
+                ShareUtil.shareText(mJobDetailActivity,
+                        city + "的好职位:" + position + " 分享自哪合伙网");
                 break;
             case R.id.collect:
                 if (isApply) {
@@ -299,6 +300,9 @@ public class JobDetailFragment extends Fragment
 
 
     private void initData(NetJobDetail response) {
+        city = response.getData().getJob().getProv() +
+                response.getData().getJob().getCity();
+        position = response.getData().getJob().getPosition();
         tv_job_type.setText(response.getData().getJob().getPosition());
         tv_job_location.setText(response.getData().getCompany().getCompany());
         tv_wage.setText(response.getData().getJob().getWagemin() + "k-" +

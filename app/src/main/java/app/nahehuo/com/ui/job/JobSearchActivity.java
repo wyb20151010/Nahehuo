@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -17,7 +16,6 @@ import app.nahehuo.com.R;
 import app.nahehuo.com.adapter.MyViewPagerAdapter;
 import app.nahehuo.com.ui.job.fragment.JobSearchComFragment;
 import app.nahehuo.com.ui.job.fragment.JobSearchPosFragment;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,18 +27,15 @@ public class JobSearchActivity extends AppCompatActivity
 
     private TextView cancelTextView;
     private Context mContext;
-    private PullToRefreshListView plv_search;
     private EditText searchJobEditText;
     private String[] titles = { "职位", "公司" };
-    private String keyWord;
+    private String keyWord="";
     private TabLayout mTabLayout;
     private ViewPager vp_content;
     private MyViewPagerAdapter mMyViewPagerAdapter;
     private List<Fragment> mFragments = new ArrayList<>();
-    private JobSearchPosFragment mJobSearchPosFragment;
-    private JobSearchComFragment mJobSearchComFragment;
     private ConvertData mConvertData;
-
+    private ConvertData2 mConvertData2;
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_search);
@@ -53,10 +48,8 @@ public class JobSearchActivity extends AppCompatActivity
 
 
     private void initData() {
-        mJobSearchPosFragment = new JobSearchPosFragment();
-        mJobSearchComFragment = new JobSearchComFragment();
-        mFragments.add(mJobSearchPosFragment);
-        mFragments.add(mJobSearchComFragment);
+        mFragments.add(new JobSearchPosFragment());
+        mFragments.add(new JobSearchComFragment());
     }
 
 
@@ -92,6 +85,7 @@ public class JobSearchActivity extends AppCompatActivity
                                 keyWord = searchJobEditText.getText()
                                                            .toString();
                                 mConvertData.convertData(keyWord);
+                                mConvertData2.convertData(keyWord);
                             }
                             return true;
                         }
@@ -110,6 +104,11 @@ public class JobSearchActivity extends AppCompatActivity
     }
 
 
+    public void setConvertData2(ConvertData2 convertData2) {
+        mConvertData2 = convertData2;
+    }
+
+
     public void setConvertData(ConvertData convertData) {
         mConvertData = convertData;
     }
@@ -118,4 +117,9 @@ public class JobSearchActivity extends AppCompatActivity
     public interface ConvertData{
         void convertData(String data);
     }
+
+    public interface ConvertData2{
+        void convertData(String data);
+    }
+
 }

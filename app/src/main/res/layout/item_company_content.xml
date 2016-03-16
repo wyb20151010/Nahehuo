@@ -7,6 +7,12 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:background="@color/backgroundgray"
+        android:layout_width="match_parent"
+        android:layout_height="10dp">
+
+    </LinearLayout>
+    <LinearLayout
         android:background="@color/white"
         android:layout_centerInParent="true"
         android:orientation="horizontal"
@@ -65,11 +71,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:background="@color/backgroundgray"
-        android:layout_width="match_parent"
-        android:layout_height="10dp">
     </LinearLayout>
 
 </LinearLayout>

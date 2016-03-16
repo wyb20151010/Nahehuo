@@ -163,6 +163,70 @@ public class GlobalVariables {
             "api/job/interview/create";
     //job（职位API组）----------------------------------------------------
 
+    //company（企业API组）-------------------------------------------------
+    // 推荐企业
+    public static final String RECOMMEND_COMPANY = IP_ADDRESS +
+            "api/company/recommend";
+    // 企业列表
+    public static final String COMPANY_LIST = IP_ADDRESS +
+            "api/company/list";
+    // 企业搜索
+    public static final String COMPANY_SEARCH = IP_ADDRESS +
+            "api/company/search";
+    //企业详情
+    public static final String COMPANY_DETAIL = IP_ADDRESS +
+            "api/company/show";
+    //企业标签
+    public static final String COMPANY_TAG = IP_ADDRESS +
+            "api/company/tag";
+    //企业产品
+    public static final String COMPANY_PRODUCT= IP_ADDRESS +
+            "api/company/product";
+    //企业team
+    public static final String COMPANY_TEAM= IP_ADDRESS +
+            "api/company/team";
+    //企业职位列表
+    public static final String COMPANY_JOB_LIST= IP_ADDRESS +
+            "api/company/job";
+    //企业历程
+    public static final String COMPANY_HISTORY= IP_ADDRESS +
+            "api/company/history";
+    //企业评价
+    public static final String COMPANY_COMMENT= IP_ADDRESS +
+            "api/company/comment";
+    //企业印象
+    public static final String COMPANY_IMPRESSION= IP_ADDRESS +
+            "api/company/impression";
+    //企业印象列表
+    public static final String COMPANY_IMPRESSION_LIST= IP_ADDRESS +
+            "api/company/impression_list";
+    //添加企业点评
+    public static final String COMPANY_CREATE= IP_ADDRESS +
+            "api/company/comment_create";
+    //企业收藏
+    public static final String COMPANY_COLLECT_CREATE= IP_ADDRESS +
+            "api/company/collect_create";
+    //company（企业API组）-------------------------------------------------
+
+    //order（订单API组）----------------------------------------------------
+    //创建订单
+    public static final String ORDER_CREATE= IP_ADDRESS +
+            "api/order/create";
+    //order（订单API组）----------------------------------------------------
+
+    //authpay（支付API组）--------------------------------------------------
+    //APP端支付宝支付
+    public static final String ALIPAY= IP_ADDRESS +
+            "authpay/app/alipay";
+    //APP端微信支付
+    public static final String WYPAY= IP_ADDRESS +
+            "authpay/app/wxpay";
+    // 钱包支付
+    public static final String WALLET_PAY= IP_ADDRESS +
+            "authpay/wallet/pay";
+    //authpay（支付API组）----------------------------------------------------
+
+
     // 隐私设置
     public static final String PRIVACY_SET_POST = IP_ADDRESS +
             "usersetting?access_token=";

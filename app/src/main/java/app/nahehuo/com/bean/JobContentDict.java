@@ -10,6 +10,17 @@ public class JobContentDict {
     private String avatar;
     private String position;
     private List<String> tags;
+    private int cid;
+
+
+    public int getCid() {
+        return cid;
+    }
+
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
 
 
     public String getAvatar() {

@@ -36,7 +36,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_19_80"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             app:layout_scrollFlags="scroll|enterAlways">
 
@@ -45,6 +45,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/iv_logo"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_width="65dp"
@@ -56,43 +57,35 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_weight="1.6"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/textcolorgray"
+                    android:text="今翌信息科技(上海)有限公司"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-                    <TextView
-                        android:layout_marginTop="15dp"
-                        android:textColor="@color/textcolorgray"
-                        android:text="今翌信息科技(上海)有限公司"
-                        android:textSize="16sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-
-                    <RatingBar
-                        android:layout_gravity="center_vertical"
-                        android:id="@+id/ratingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:rating="4"
-                        style="?android:attr/ratingBarStyleSmall"/>
-                </LinearLayout>
+                <RatingBar
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:rating="4"
+                    style="?android:attr/ratingBarStyleSmall"/>
 
                 <com.zhy.view.flowlayout.TagFlowLayout
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="15dp"
                     android:id="@+id/tfl_company_tag"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2.4"></com.zhy.view.flowlayout.TagFlowLayout>
+                    android:layout_height="wrap_content">
+
+                </com.zhy.view.flowlayout.TagFlowLayout>
 
             </LinearLayout>
 

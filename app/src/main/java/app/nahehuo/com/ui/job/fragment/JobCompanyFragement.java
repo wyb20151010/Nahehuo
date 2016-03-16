@@ -6,10 +6,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,42 +21,197 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import app.nahehuo.com.R;
 import app.nahehuo.com.adapter.CompanyContentAdapter;
 import app.nahehuo.com.adapter.CompanyTitleAdapter;
+import app.nahehuo.com.base.GlobalVariables;
 import app.nahehuo.com.bean.JobContentDict;
+import app.nahehuo.com.bean.NetCompanyList;
+import app.nahehuo.com.bean.NetRecomCompany;
 import app.nahehuo.com.bean.RecomJob;
+import app.nahehuo.com.network.GsonCallBack;
 import app.nahehuo.com.ui.MainActivity;
 import app.nahehuo.com.ui.job.CompanyDetailActivity;
+import app.nahehuo.com.util.MyToast;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.victor.loading.rotate.RotateLoading;
+import com.zhy.http.okhttp.OkHttpUtils;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by WYB on 2015/12/24.
  */
 public class JobCompanyFragement extends Fragment
-        implements AdapterView.OnItemClickListener {
+        implements AdapterView.OnItemClickListener,
+        PullToRefreshBase.OnRefreshListener<ListView>,
+        View.OnClickListener {
 
-    private RecyclerView rv_title;
     private Context mContext;
     private MainActivity mainActivity;
-    private List<RecomJob> mJobListDicts = new ArrayList<>();
-    private List<JobContentDict> mJobContentDicts = new ArrayList<>();
+    private RecyclerView rv_title;
     private PullToRefreshListView plv_company_job;
-    private int pageIndex = 1;
-    private CompanyContentAdapter mCompanyContentAdapter;
+    private RotateLoading mLoading;
+    private RelativeLayout rl_content;
     private RelativeLayout rl_company_title;
     private LinearLayout ll_company_title;
+    private TextView tv_city, tv_finance, tv_industry, tv_size;
+
+    private CompanyTitleAdapter mCompanyTitleAdapter;
+    private CompanyContentAdapter mCompanyContentAdapter;
+    private List<RecomJob> mJobListDicts = new ArrayList<>();
+    private List<JobContentDict> mJobContentDicts = new ArrayList<>();
     private boolean isHideShowing = false;
     private boolean isShowing = false;
+    private final static int RECOMMEND_COMPANY = 0;
+    private final static int COMMPANY_LIST = 1;
+    private int pageIndex;
+    private String city, finance, industry, size;
+
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case RECOMMEND_COMPANY:
+                    findRecomCompany();
+                    break;
+                case COMMPANY_LIST:
+                    findCompanyList();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
+
+    private void findCompanyList() {
+        plv_company_job.onRefreshComplete();
+        if (pageIndex == 1) {
+            mJobContentDicts.clear();
+        }
+        OkHttpUtils.get()
+                   .url(GlobalVariables.COMPANY_SEARCH)
+                   .addParams("access_token", GlobalVariables.access_token)
+                   .addParams("device", GlobalVariables.device)
+                   .addParams("area", "")
+                   .addParams("financle", "")
+                   .addParams("industry", "")
+                   .addParams("size", "")
+                   .addParams("pageindex", pageIndex + "")
+                   .addParams("pagesize", GlobalVariables.pagesize)
+                   .build()
+                   .execute(new GsonCallBack<NetCompanyList>(
+                           NetCompanyList.class) {
+                       @Override
+                       public void onResponse(NetCompanyList response) {
+                           if (response.getCode() == 200) {
+                               for (int i = 0;
+                                    i < response.getData().size();
+                                    i++) {
+                                   JobContentDict contentDict
+                                           = new JobContentDict();
+                                   contentDict.setAvatar(
+                                           response.getData().get(i).getLogo());
+                                   contentDict.setPosition(
+                                           response.getData().get(i).getName());
+                                   List<String> tags = new ArrayList<String>();
+                                   if (!TextUtils.isEmpty(response.getData()
+                                                                  .get(i)
+                                                                  .getIndustry())) {
+                                       tags.add(response.getData()
+                                                        .get(i)
+                                                        .getIndustry()
+                                                        .equals("0")
+                                                ? "行业未知"
+                                                : response.getData()
+                                                          .get(i)
+                                                          .getIndustry());
+                                   }
+
+                                   tags.add(response.getData()
+                                                    .get(i)
+                                                    .getSize()
+                                                    .equals("0")
+                                            ? "0-10人"
+                                            : response.getData()
+                                                      .get(i)
+                                                      .getSize());
+                                   tags.add(response.getData()
+                                                    .get(i)
+                                                    .getFinancle()
+                                                    .equalsIgnoreCase("0")
+                                            ? "未融资"
+                                            : response.getData()
+                                                      .get(i)
+                                                      .getFinancle());
+                                   if (!TextUtils.isEmpty(response.getData()
+                                                                  .get(i)
+                                                                  .getProv()) ||
+                                           !TextUtils.isEmpty(response.getData()
+                                                                      .get(i)
+                                                                      .getCity())) {
+                                       tags.add(response.getData()
+                                                        .get(i)
+                                                        .getProv() +
+                                               response.getData()
+                                                       .get(i)
+                                                       .getCity());
+                                   }
+
+                                   contentDict.setTags(tags);
+                                   contentDict.setCid(
+                                           response.getData().get(i).getCid());
+                                   mJobContentDicts.add(contentDict);
+                               }
+                               mCompanyContentAdapter.notifyDataSetChanged();
+                               mLoading.stop();
+                               rl_content.setVisibility(View.VISIBLE);
+                           }
+                           else {
+                               MyToast.showToast(mContext,
+                                       response.getMessage());
+                           }
+                           super.onResponse(response);
+                       }
+                   });
+    }
+
+
+    private void findRecomCompany() {
+        OkHttpUtils.get()
+                   .url(GlobalVariables.RECOMMEND_COMPANY)
+                   .addParams("access_token", GlobalVariables.access_token)
+                   .addParams("device", GlobalVariables.device)
+                   .build()
+                   .execute(new GsonCallBack<NetRecomCompany>(
+                           NetRecomCompany.class) {
+                       @Override
+                       public void onResponse(NetRecomCompany response) {
+                           if (response.getCode() == 200) {
+                               for (int i = 0;
+                                    i < response.getData().size();
+                                    i++) {
+                                   RecomJob recomJob = new RecomJob();
+                                   recomJob.setCompany(
+                                           response.getData().get(i).getName());
+                                   recomJob.setLogo(
+                                           response.getData().get(i).getLogo());
+                                   recomJob.setCid(response.getData().get(i)
+                                           .getCid());
+                                   mJobListDicts.add(recomJob);
+                               }
+                               mCompanyTitleAdapter.notifyDataSetChanged();
+                               mHandler.sendEmptyMessage(COMMPANY_LIST);
+                           }
+                           super.onResponse(response);
+                       }
+                   });
+    }
 
 
     @Override public void onAttach(Activity activity) {
         super.onAttach(activity);
-
         if (activity instanceof MainActivity) {
             mainActivity = (MainActivity) activity;
         }
@@ -68,18 +226,46 @@ public class JobCompanyFragement extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_company, null);
         mContext = getActivity();
-        initData();
+
+        pageIndex = 1;
+        tv_city = (TextView) v.findViewById(R.id.tv_city);
+        tv_finance = (TextView) v.findViewById(R.id.tv_finance);
+        tv_industry = (TextView) v.findViewById(R.id.tv_industry);
+        tv_size = (TextView) v.findViewById(R.id.tv_size);
+        tv_city.setOnClickListener(this);
+        tv_finance.setOnClickListener(this);
+        tv_industry.setOnClickListener(this);
+        tv_size.setOnClickListener(this);
+
+        rl_content = (RelativeLayout) v.findViewById(R.id.rl_content);
+        mLoading = (RotateLoading) v.findViewById(R.id.loading);
+        mLoading.start();
         rv_title = (RecyclerView) v.findViewById(R.id.rv_title);
+        mCompanyTitleAdapter = new CompanyTitleAdapter(mContext, mJobListDicts);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv_title.setLayoutManager(linearLayoutManager);
-        rv_title.setAdapter(new CompanyTitleAdapter(mContext, mJobListDicts));
+        rv_title.setAdapter(mCompanyTitleAdapter);
+
         rl_company_title = (RelativeLayout) v.findViewById(
                 R.id.rl_company_title);
         ll_company_title = (LinearLayout) v.findViewById(R.id.ll_company_title);
 
         initPlv(v);
+        mHandler.sendEmptyMessage(RECOMMEND_COMPANY);
+        mCompanyTitleAdapter.setSetOnItemClickListener(
+                new CompanyTitleAdapter.SetOnItemClickListener() {
+                    @Override public void setOnItemClickListener(int position) {
+                        Intent intent = new Intent(mContext,
+                                CompanyDetailActivity.class);
+                        intent.putExtra("cid",
+                                mJobListDicts.get(position).getCid());
+                        startActivity(intent);
+                        mainActivity.overridePendingTransition(
+                                R.anim.push_left_in, R.anim.push_left_out);
+                    }
+                });
         return v;
     }
 
@@ -91,67 +277,22 @@ public class JobCompanyFragement extends Fragment
                 R.id.plv_company_job);
         plv_company_job.setMode(PullToRefreshBase.Mode.BOTH);
         plv_company_job.setAdapter(mCompanyContentAdapter);
+        plv_company_job.setOnRefreshListener(this);
         plv_company_job.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        startActivity(new Intent(mContext,
-                                CompanyDetailActivity.class));
+
+                        Intent intent = new Intent(mContext,
+                                CompanyDetailActivity.class);
+                        intent.putExtra("cid",
+                                mJobContentDicts.get(position - 1).getCid());
+                        startActivity(intent);
                         mainActivity.overridePendingTransition(
                                 R.anim.push_left_in, R.anim.push_left_out);
                     }
                 });
 
-        plv_company_job.setAdapter(mCompanyContentAdapter);
-        plv_company_job.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                showTitleAnim();
-                plv_company_job.onRefreshComplete();
-            }
-
-
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-                plv_company_job.onRefreshComplete();
-            }
-        });
-       /* plv_company_job.setOnRefreshListener(
-                new PullToRefreshBase.OnRefreshListener<ListView>() {
-                    @Override
-                    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-
-                    }
-                });*/
-  /*      plv_company_job.setOnScrollListener(
-                new RecyclerView.OnScrollListener() {
-
-                    boolean isIdle;
-                    int scrollY;
-
-
-                    @Override
-                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                        scrollY += dy;
-                        if (scrollY > 4) {
-                            hideTitleAnim();
-                        }
-                        else {
-                            showTitleAnim();
-                        }
-                        super.onScrolled(recyclerView, dx, dy);
-                    }
-
-
-                    @Override
-                    public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                        if (isIdle = (newState ==
-                                RecyclerView.SCROLL_STATE_IDLE)) {
-                            scrollY = 0;
-                        }
-                        super.onScrollStateChanged(recyclerView, newState);
-                    }
-                });*/
         plv_company_job.setOnScrollListener(new AbsListView.OnScrollListener() {
             boolean isIdle;
             int firstItem;
@@ -240,90 +381,36 @@ public class JobCompanyFragement extends Fragment
     }
 
 
-    private void initData() {
-        RecomJob jobListDict = new RecomJob();
-        jobListDict.setLogo(
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg");
-        jobListDict.setCompany("今翌信息科技有限公司");
-        jobListDict.setPosition("高级PHP开发工程师");
-        mJobListDicts.add(jobListDict);
-        RecomJob jobListDict1 = new RecomJob();
-        jobListDict1.setLogo(
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg");
-        jobListDict1.setCompany("腾讯科技有限公司");
-        jobListDict1.setPosition("中级微信开发工程师");
-        mJobListDicts.add(jobListDict1);
-        RecomJob jobListDict2 = new RecomJob();
-        jobListDict2.setLogo(
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg");
-        jobListDict2.setCompany("百度科技有限公司");
-        jobListDict2.setPosition("初级IOS开发工程师");
-        mJobListDicts.add(jobListDict2);
-
-        RecomJob jobListDict3 = new RecomJob();
-        jobListDict3.setLogo(
-                "http://www.nahehuo.com/thumb/a/f/f9/32499_middle.jpg");
-        jobListDict3.setCompany("福建省金冠银商品经营有限公司");
-        jobListDict3.setPosition("渠道部投资顾问");
-        mJobListDicts.add(jobListDict3);
-        RecomJob jobListDict4 = new RecomJob();
-        jobListDict4.setLogo(
-                "http://www.nahehuo.com/thumb/a/f/f9/32499_middle.jpg");
-        jobListDict4.setCompany("福建省金冠银商品经营有限公司");
-        jobListDict4.setPosition("渠道部投资顾问");
-        mJobListDicts.add(jobListDict4);
-
-        JobContentDict jobContentDict = new JobContentDict();
-        jobContentDict.setPosition("渠道部投资顾问");
-        jobContentDict.setAvatar(
-                "http://www.nahehuo.com/thumb/a/f/f9/32499_middle.jpg");
-        jobContentDict.setTags(Arrays.asList(
-                new String[] { "五险一金", "员工持股", "团队旅游", "全职", "技术研发", "本科及以上",
-                        "人傻钱多速来" }));
-        mJobContentDicts.add(jobContentDict);
-
-        JobContentDict jobContentDict1 = new JobContentDict();
-        jobContentDict1.setPosition("渠道部投资顾问");
-        jobContentDict1.setAvatar(
-                "http://www.nahehuo.com/thumb/a/f/f9/32499_middle.jpg");
-        jobContentDict1.setTags(
-                Arrays.asList(new String[] { "全职", "技术研发", "本科及以上", "美女多" }));
-        mJobContentDicts.add(jobContentDict1);
-
-        JobContentDict jobContentDict2 = new JobContentDict();
-        jobContentDict2.setPosition("渠道部投资顾问");
-        jobContentDict2.setAvatar(
-                "http://www.nahehuo.com/thumb/a/f/f9/32499_middle.jpg");
-        jobContentDict2.setTags(
-                Arrays.asList(new String[] { "团队旅游", "全职", "技术研发", "本科及以上" }));
-        mJobContentDicts.add(jobContentDict2);
-
-        JobContentDict jobContentDict3 = new JobContentDict();
-        jobContentDict3.setPosition("渠道部投资顾问");
-        jobContentDict3.setAvatar(
-                "http://www.nahehuo.com/thumb/a/f/f9/32499_middle.jpg");
-        jobContentDict3.setTags(
-                Arrays.asList(new String[] { "团队旅游", "全职", "技术研发", "本科及以上" }));
-        mJobContentDicts.add(jobContentDict3);
-
-        JobContentDict jobContentDict4 = new JobContentDict();
-        jobContentDict4.setPosition("渠道部投资顾问");
-        jobContentDict4.setAvatar(
-                "http://www.nahehuo.com/thumb/a/f/f9/32499_middle.jpg");
-        jobContentDict4.setTags(
-                Arrays.asList(new String[] { "团队旅游", "全职", "技术研发", "本科及以上" }));
-        mJobContentDicts.add(jobContentDict4);
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         startActivity(new Intent(mContext, CompanyDetailActivity.class));
+    }
+
+
+    @Override public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+        if (refreshView.isHeaderShown()) {
+            mJobContentDicts.clear();
+            pageIndex = 1;
+            mHandler.sendEmptyMessage(COMMPANY_LIST);
+            showTitleAnim();
+        }
+        else if (refreshView.isFooterShown()) {
+            pageIndex++;
+            mHandler.sendEmptyMessage(COMMPANY_LIST);
+        }
+    }
+
+
+    @Override public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_city:
+                break;
+            case R.id.tv_finance:
+                break;
+            case R.id.tv_industry:
+                break;
+            case R.id.tv_size:
+                break;
+        }
     }
 }

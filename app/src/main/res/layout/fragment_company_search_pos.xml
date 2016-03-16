@@ -3,20 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:visibility="gone"
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/plv_company"
+        android:divider="@null"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            android:id="@+id/plv_company"
-            android:divider="@null"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.handmark.pulltorefresh.library.PullToRefreshListView>
-    </LinearLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
 
     <LinearLayout
-
+        android:id="@+id/ll_content"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_width="@dimen/width_40_80"

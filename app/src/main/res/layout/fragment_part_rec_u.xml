@@ -14,17 +14,7 @@
         </android.support.v4.view.ViewPager>
 
     </RelativeLayout>
-    <RelativeLayout
-        android:background="@color/back_gray"
-        android:layout_width="match_parent"
-        android:layout_height="15dp">
-        <com.viewpagerindicator.CirclePageIndicator
-                    android:layout_centerInParent="true"
-                    android:id="@+id/indicator"
-                    android:layout_height="wrap_content"
-                    android:layout_width="60dp"
-                    android:background="#ffffff"/>
-    </RelativeLayout>
+
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:divider="@null"
         android:id="@+id/plv_reco"

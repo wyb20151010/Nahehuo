@@ -21,7 +21,7 @@ public class CompanyTitleAdapter
 
     private Context mContext;
     private List<RecomJob> mJobListDicts = new ArrayList<>();
-
+    private SetOnItemClickListener mSetOnItemClickListener;
 
     public CompanyTitleAdapter(Context context, List<RecomJob> jobListDicts) {
         mContext = context;
@@ -37,12 +37,16 @@ public class CompanyTitleAdapter
     }
 
 
-    @Override public void onBindViewHolder(ViewHolder holder, int position) {
+    @Override public void onBindViewHolder(ViewHolder holder, final int position) {
         RecomJob jobListDict = mJobListDicts.get(position);
         holder.tv_company_title.setText(jobListDict.getCompany());
         ImageLoader.getInstance()
-                   .displayImage(jobListDict.getLogo(),
-                           holder.iv_company_title);
+                   .displayImage(jobListDict.getLogo(), holder.iv_company_title);
+        holder.iv_company_title.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                mSetOnItemClickListener.setOnItemClickListener(position);
+            }
+        });
     }
 
 
@@ -64,5 +68,15 @@ public class CompanyTitleAdapter
             iv_company_title = (ImageView) itemView.findViewById(
                     R.id.iv_company_title);
         }
+    }
+
+
+    public void setSetOnItemClickListener(SetOnItemClickListener setOnItemClickListener) {
+        mSetOnItemClickListener = setOnItemClickListener;
+    }
+
+
+    public interface SetOnItemClickListener{
+        void setOnItemClickListener(int position);
     }
 }

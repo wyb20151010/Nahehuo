@@ -4,16 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
     <LinearLayout
         android:background="@color/back_gray"
         android:layout_width="match_parent"
         android:layout_height="10dp">
 
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="78dp">
+
         <ImageView
             android:id="@+id/iv_logo"
             android:layout_marginTop="10dp"
@@ -21,55 +24,79 @@
             android:scaleType="centerCrop"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
+
         <LinearLayout
             android:layout_marginLeft="10dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
+
             <TextView
                 android:singleLine="true"
                 android:maxLength="15"
-                android:id="@+id/tv_position"
+                android:id="@+id/tv_name"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:text="高级PHP开发工程师"
+                android:text="今翌信息科技有限公司"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:singleLine="true"
                     android:maxLength="15"
-                    android:id="@+id/tv_company"
+                    android:id="@+id/tv_city"
                     android:textColor="@color/textcolorgray"
                     android:textSize="13sp"
-                    android:text="今翌信息科技有限公司"
+                    android:text="上海花桥"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <ImageView
+
+                <TextView
+                    android:textColor="#f07669"
                     android:layout_marginLeft="10dp"
-                    android:scaleType="centerCrop"
-                    android:layout_width="23dp"
-                    android:layout_height="18dp"/>
+                    android:singleLine="true"
+                    android:maxLength="15"
+                    android:id="@+id/tv_finance"
+                    android:textSize="13sp"
+                    android:text="天使轮"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/tv_salary"
+            <LinearLayout
                 android:layout_marginTop="3dp"
-                android:textColor="#f07669"
-                android:textSize="13sp"
-                android:text="20k-30k"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_industry"
+                    android:textColor="@color/textcolorgray"
+                    android:textSize="13sp"
+                    android:text="建筑"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_size"
+                    android:textColor="@color/textcolorgray"
+                    android:textSize="13sp"
+                    android:text="1-100人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
-        <RelativeLayout
+
+        <!--<RelativeLayout
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_marginTop="10dp"
@@ -80,6 +107,7 @@
                 android:text="13:03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <TextView
                 android:visibility="gone"
                 android:id="@+id/tv_status"
@@ -97,8 +125,8 @@
                 android:text="已投递"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </RelativeLayout>
+        </RelativeLayout>-->
 
     </LinearLayout>
-    
+
 </LinearLayout>

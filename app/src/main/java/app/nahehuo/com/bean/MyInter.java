@@ -11,6 +11,11 @@ public class MyInter {
     private String time;
     private String status;
     private String status_name;
+    private String logo;
+
+
+    public MyInter() {
+    }
 
 
     public MyInter(String position, String company, String salary, String time, String status, String status_name) {
@@ -20,6 +25,16 @@ public class MyInter {
         this.time = time;
         this.status = status;
         this.status_name = status_name;
+    }
+
+
+    public String getLogo() {
+        return logo;
+    }
+
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
 

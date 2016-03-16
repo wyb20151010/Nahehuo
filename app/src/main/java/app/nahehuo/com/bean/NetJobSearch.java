@@ -70,10 +70,10 @@ public class NetJobSearch {
         private int wagemax;
         private String edu;
         private String attraction;
-        private int published;
+        private long published;
         private int cid;
         private String company;
-        private Object logo;
+        private String logo;
         private int cstatus;
         private String financle;
         private String website;
@@ -114,7 +114,7 @@ public class NetJobSearch {
         }
 
 
-        public void setPublished(int published) { this.published = published;}
+        public void setPublished(long published) { this.published = published;}
 
 
         public void setCid(int cid) { this.cid = cid;}
@@ -123,7 +123,7 @@ public class NetJobSearch {
         public void setCompany(String company) { this.company = company;}
 
 
-        public void setLogo(Object logo) { this.logo = logo;}
+        public void setLogo(String logo) { this.logo = logo;}
 
 
         public void setCstatus(int cstatus) { this.cstatus = cstatus;}
@@ -176,7 +176,7 @@ public class NetJobSearch {
         public String getAttraction() { return attraction;}
 
 
-        public int getPublished() { return published;}
+        public long getPublished() { return published;}
 
 
         public int getCid() { return cid;}
@@ -185,7 +185,7 @@ public class NetJobSearch {
         public String getCompany() { return company;}
 
 
-        public Object getLogo() { return logo;}
+        public String getLogo() { return logo;}
 
 
         public int getCstatus() { return cstatus;}
