@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import app.nahehuo.com.R;
-import app.nahehuo.com.bean.TestData;
+import app.nahehuo.com.bean.CompHistory;
 import app.nahehuo.com.util.DpPxUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,13 @@ import java.util.List;
  */
 public class ProjectProgressAdapter extends BaseAdapter {
 
-    private List<TestData> mDatas = new ArrayList<>();
+    private List<CompHistory> mDatas = new ArrayList<>();
     private Context mContext;
     private float mviewHeight;
     private LinearLayout.LayoutParams layoutParams;
 
 
-    public ProjectProgressAdapter(List<TestData> datas, Context context) {
+    public ProjectProgressAdapter(List<CompHistory> datas, Context context) {
         mDatas = datas;
         mContext = context;
     }
@@ -48,7 +48,7 @@ public class ProjectProgressAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
-        TestData item = mDatas.get(position);
+        CompHistory item = mDatas.get(position);
         final ViewHolder viewHolder;
         View v;
         if (convertView == null) {

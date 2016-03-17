@@ -28,7 +28,6 @@ import app.nahehuo.com.ui.job.fragment.CompCommentFragment;
 import app.nahehuo.com.ui.job.fragment.CompHomePageFragment;
 import app.nahehuo.com.ui.job.fragment.CompJobFragment;
 import app.nahehuo.com.ui.job.fragment.CompProgressFragment;
-import app.nahehuo.com.util.MyToast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -60,6 +59,9 @@ public class CompanyDetailActivity extends AppCompatActivity {
     private final static int SHOW_COMPANY_DETAIL = 0;
     private int cid;
     private ConvertToHomepage mConvertToHomepage;
+    private ConvertToComJob mConvertToComJob;
+    private ConvertToComHistory mComHistory;
+    private ConvertToComComment mComComment;
     private Handler mHandler = new Handler() {
         @Override public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -109,23 +111,24 @@ public class CompanyDetailActivity extends AppCompatActivity {
                                                 .equals("0")
                                         ? "行业未知"
                                         : response.getData().getIndustry());
-                               tags.add(response.getData()
-                                                .getSize()
-                                                .equals("0")
+                               tags.add(response.getData().getSize().equals("0")
                                         ? "0-10人"
                                         : response.getData().getSize());
-                               if(!TextUtils.isEmpty(response.getData()
-                                                             .getWebsite())){
+                               if (!TextUtils.isEmpty(
+                                       response.getData().getWebsite())) {
                                    tags.add(response.getData().getWebsite());
                                }
                                tagAdapter.notifyDataChanged();
-                               mConvertToHomepage.convertToHomepage(cid+"",
+                               mConvertToHomepage.convertToHomepage(cid + "",
                                        response.getData().getContent(),
                                        response.getData().getAddress());
+                               mConvertToComJob.convertToComJob(cid + "");
+                               mComHistory.convertToComHistory(cid + "");
+                               mComComment.convertToComComment(cid+"");
                            }
                            else {
-                               MyToast.showToast(mContext,
-                                       response.getMessage());
+                               /*MyToast.showToast(mContext,
+                                       response.getMessage());*/
                            }
                            super.onResponse(response);
                        }
@@ -218,7 +221,34 @@ public class CompanyDetailActivity extends AppCompatActivity {
     }
 
 
-    public interface ConvertToHomepage{
-        void convertToHomepage(String cid,String content,String address);
+    public void setConvertToComJob(ConvertToComJob convertToComJob) {
+        mConvertToComJob = convertToComJob;
+    }
+
+
+    public void setComHistory(ConvertToComHistory comHistory) {
+        mComHistory = comHistory;
+    }
+
+
+    public void setComComment(ConvertToComComment comComment) {
+        mComComment = comComment;
+    }
+
+
+    public interface ConvertToHomepage {
+        void convertToHomepage(String cid, String content, String address);
+    }
+
+    public interface ConvertToComJob {
+        void convertToComJob(String cid);
+    }
+
+    public interface ConvertToComHistory {
+        void convertToComHistory(String cid);
+    }
+
+    public interface ConvertToComComment {
+        void convertToComComment(String cid);
     }
 }

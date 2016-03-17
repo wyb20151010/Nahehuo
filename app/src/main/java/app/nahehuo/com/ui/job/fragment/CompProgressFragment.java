@@ -1,22 +1,29 @@
 package app.nahehuo.com.ui.job.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import app.nahehuo.com.R;
-import app.nahehuo.com.bean.TestData;
-import app.nahehuo.com.util.DpPxUtil;
+import app.nahehuo.com.base.GlobalVariables;
+import app.nahehuo.com.bean.CompHistory;
+import app.nahehuo.com.bean.NetCompProgress;
+import app.nahehuo.com.interfa.LoadMoreListener;
+import app.nahehuo.com.network.GsonCallBack;
+import app.nahehuo.com.ui.job.CompanyDetailActivity;
 import app.nahehuo.com.util.TextUtil;
+import app.nahehuo.com.view.AutoLoadRecyclerView;
+import com.zhy.http.okhttp.OkHttpUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,67 +31,134 @@ import java.util.List;
  * Created by WYB on 2016/1/11.
  */
 public class CompProgressFragment extends Fragment {
-    private RecyclerView recycler_view;
-    private List<TestData> TestDatas = new ArrayList<>();
-    private float mviewHeight;
+
+    private SwipeRefreshLayout srl_comp_history;
+    private AutoLoadRecyclerView recycler_view;
+    private List<CompHistory> mCompHistories = new ArrayList<>();
     private Context mContext;
     private CompProgressAdapter mAdapter;
+    private CompanyDetailActivity mCompanyDetailActivity;
+    private String mCid;
+    private int pageindex;
+    private final static int COMPANY_HISTORY = 0;
+
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case COMPANY_HISTORY:
+                    findCompanyHistory();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
+
+    private void findCompanyHistory() {
+        if (pageindex == 1) {
+            mCompHistories.clear();
+        }
+        OkHttpUtils.get()
+                   .url(GlobalVariables.COMPANY_HISTORY)
+                   .addParams("access_token", GlobalVariables.access_token)
+                   .addParams("device", GlobalVariables.device)
+                   .addParams("cid", mCid)
+                   .addParams("pageindex", pageindex + "")
+                   .addParams("pagesize", "5")
+                   .build()
+                   .execute(new GsonCallBack<NetCompProgress>(
+                           NetCompProgress.class) {
+                       @Override
+                       public void onResponse(NetCompProgress response) {
+                           if (response.getCode() == 200) {
+                               for (int i = 0;
+                                    i < response.getData().size();
+                                    i++) {
+                                   CompHistory history = new CompHistory();
+                                   history.setContent(response.getData()
+                                                              .get(i)
+                                                              .getTitle());
+                                   history.setContent1(response.getData()
+                                                               .get(i)
+                                                               .getContent());
+                                   StringBuffer sb = new StringBuffer();
+                                   sb.append(
+                                           response.getData().get(i).getDate());
+                                   sb.append(" ");
+                                   sb.append(
+                                           response.getData().get(i).getWeek());
+
+                                   history.setTitle(sb.toString());
+                                   mCompHistories.add(history);
+                               }
+                               mAdapter.notifyDataSetChanged();
+                           }
+
+                           super.onResponse(response);
+                       }
+                   });
+    }
+
+
+    @Override public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        if (activity instanceof CompanyDetailActivity) {
+            mCompanyDetailActivity = (CompanyDetailActivity) activity;
+        }
+        else {
+            throw new IllegalArgumentException(
+                    "The activity must be a CompanyDetailActivity !");
+        }
+    }
 
 
     @Nullable @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_comp_progress, null);
+        pageindex = 1;
         mContext = getActivity();
-        initData();
-        mAdapter = new CompProgressAdapter(TestDatas);
-        recycler_view = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mAdapter = new CompProgressAdapter(mCompHistories);
+        recycler_view = (AutoLoadRecyclerView) v.findViewById(
+                R.id.recycler_view);
+        srl_comp_history = (SwipeRefreshLayout) v.findViewById(
+                R.id.srl_comp_history);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recycler_view.setLayoutManager(layoutManager);
         recycler_view.setAdapter(mAdapter);
+        mCompanyDetailActivity.setComHistory(
+                new CompanyDetailActivity.ConvertToComHistory() {
+                    @Override public void convertToComHistory(String cid) {
+                        mCid = cid;
+                        mCompHistories.clear();
+                        mHandler.sendEmptyMessage(COMPANY_HISTORY);
+                    }
+                });
+        srl_comp_history.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override public void onRefresh() {
+                        pageindex = 1;
+                        mHandler.sendEmptyMessage(COMPANY_HISTORY);
+                    }
+                });
+        recycler_view.setLoadMoreListener(new LoadMoreListener() {
+            @Override public void loadMore() {
+                pageindex++;
+                mHandler.sendEmptyMessage(COMPANY_HISTORY);
+            }
+        });
         return v;
-    }
-
-
-    private void initData() {
-        TestData testData = new TestData();
-        testData.setTitle("12-01 周一");
-        testData.setContent("第一次上线我来");
-        TestDatas.add(testData);
-
-        TestData testData1 = new TestData();
-        testData1.setTitle("12-02 周二");
-        testData1.setContent1("为了发电，请用爱吧。用你妹啊啊啊啊啊啊");
-        testData1.setContent("第二次上线，我又来了");
-        TestDatas.add(testData1);
-        TestData testData2 = new TestData();
-        testData2.setTitle("12-02 周二");
-        testData2.setContent1(
-                "英国《每日邮报》21日报道，。写信者丁某自称是安徽人，说，他对此感到震惊，认为有义务将此事公开。");
-        testData2.setContent("第二次上线，我又来了");
-        TestDatas.add(testData2);
-        TestData testData3 = new TestData();
-        testData3.setTitle("12-02 周二");
-        testData3.setContent1(
-                "发现里面藏着一封中文信。他将信件内容翻译成英文后，发现是封“绝望的求救信”。写信者丁某自称是安徽人，39岁，被诬告涉嫌犯敲诈勒索罪，现被强行关押。阿克巴尔说，他对此感到震惊，认为有义务将此事公开。");
-        testData3.setContent("第二次上线，我又来了");
-        TestDatas.add(testData3);
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
 
     class CompProgressAdapter
             extends RecyclerView.Adapter<CompProgressAdapter.ViewHolder> {
 
-        private List<TestData> mTestDatas;
+        private List<CompHistory> mTestDatas;
 
 
-        public CompProgressAdapter(List<TestData> testDatas) {
+        public CompProgressAdapter(List<CompHistory> testDatas) {
             mTestDatas = testDatas;
         }
 
@@ -100,62 +174,16 @@ public class CompProgressFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
-            TestData testData = mTestDatas.get(position);
-            if (!TextUtil.isEmpty(testData.getContent1())) {
+            CompHistory item = mTestDatas.get(position);
+            if (!TextUtil.isEmpty(item.getContent1())) {
                 holder.tv_content1.setVisibility(View.VISIBLE);
-                holder.tv_content1.setText(testData.getContent1());
+                holder.tv_content1.setText(item.getContent1());
             }
-            holder.tv_title.setText(testData.getTitle());
-            holder.tv_content.setText(testData.getContent());
+            holder.tv_title.setText(item.getTitle());
+            holder.tv_content.setText(item.getContent());
 
-            if (!TextUtil.isEmpty(testData.getContent1())) {
-                holder.tv_content1.setText(testData.getContent1());
-
-                holder.tv_content1.getViewTreeObserver()
-                                  .addOnGlobalLayoutListener(
-                                          new ViewTreeObserver.OnGlobalLayoutListener() {
-                                              @Override
-                                              public void onGlobalLayout() {
-
-                                                  mviewHeight
-                                                          = holder.tv_content1.getHeight();
-                                                  Log.d("TAG",
-                                                          "" + mviewHeight);
-                                                  LinearLayout.LayoutParams
-                                                          layoutParams
-                                                          = new LinearLayout.LayoutParams(
-                                                          LinearLayout.LayoutParams.MATCH_PARENT,
-                                                          LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                                                  if (position ==
-                                                          mTestDatas.size() -
-                                                                  1) {
-                                                      layoutParams.height
-                                                              = DpPxUtil.dip2px(
-                                                              getContext(), 85 +
-                                                                      DpPxUtil.px2dip(
-                                                                              getContext(),
-                                                                              mviewHeight));
-                                                  }
-                                                  else {
-                                                      layoutParams.height
-                                                              = DpPxUtil.dip2px(
-                                                              getContext(), 60 +
-                                                                      DpPxUtil.px2dip(
-                                                                              getContext(),
-                                                                              mviewHeight));
-                                                  }
-
-                                                  layoutParams.width
-                                                          = DpPxUtil.dip2px(
-                                                          getContext(), 1);
-                                                  holder.view.setLayoutParams(
-                                                          layoutParams);
-                                                  holder.tv_content1.getViewTreeObserver()
-                                                                    .removeGlobalOnLayoutListener(
-                                                                            this);
-                                              }
-                                          });
+            if (!TextUtil.isEmpty(item.getContent1())) {
+                holder.tv_content1.setText(item.getContent1());
             }
         }
 

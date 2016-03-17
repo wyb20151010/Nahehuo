@@ -54,7 +54,7 @@ public class CompHomePageFragment extends Fragment {
     private LinearLayout ll_comp_product, ll_comp_introduce, ll_comp_team,
             ll_comp_tag, ll_comp_location;
     private TagFlowLayout tfl_company_tag;
-    private CirclePageIndicator indicator,indicator_team;
+    private CirclePageIndicator indicator, indicator_team;
     private List<ImageView> imageViews = new ArrayList<>();
 
     private TagAdapter<List<String>> tagAdapter;
@@ -116,7 +116,8 @@ public class CompHomePageFragment extends Fragment {
                                }
                                vp_content_team.setAdapter(
                                        new CompanyTeamAdapter(
-                                               getChildFragmentManager(), mTeams));
+                                               getChildFragmentManager(),
+                                               mTeams));
                                indicator_team.setViewPager(vp_content_team);
                            }
                            else {
@@ -161,11 +162,8 @@ public class CompHomePageFragment extends Fragment {
                                                            .getFile());
                                    mProducts.add(product);
                                }
-                               if (!TextUtils.isEmpty(
-                                       mProducts.get(0).getName())) {
-                                   tv_name.setText(mProducts.get(0).getName());
-                               }
 
+                               tv_name.setText(mProducts.get(0).getName());
                                for (int i = 0; i < mProducts.size(); i++) {
                                    ImageView iv = new ImageView(mContext);
                                    iv.setScaleType(
@@ -180,11 +178,11 @@ public class CompHomePageFragment extends Fragment {
                                                       iv,
                                                       MyApplication.getDisplayDefaultOption());
                                    imageViews.add(iv);
-                                   vp_content.setAdapter(
-                                           new TestPagerAdapter(imageViews));
-
-                                   indicator.setViewPager(vp_content);
                                }
+                               vp_content.setAdapter(
+                                       new TestPagerAdapter(imageViews));
+
+                               indicator.setViewPager(vp_content);
                            }
                            else {
 
@@ -284,7 +282,6 @@ public class CompHomePageFragment extends Fragment {
                     }
                 });
 
-
         initTagLayout(v);
         initViewpager(v);
         return v;
@@ -306,6 +303,23 @@ public class CompHomePageFragment extends Fragment {
         indicator_team.setPageColor(0x88FFFFFF);
         indicator_team.setFillColor(0xFF000000);
         indicator_team.setStrokeColor(0xFFFFFFFF);
+        vp_content.addOnPageChangeListener(
+                new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+
+                    @Override public void onPageSelected(int position) {
+                        tv_name.setText(mProducts.get(position).getName());
+                    }
+
+
+                    @Override public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
     }
 
 
@@ -414,7 +428,6 @@ public class CompHomePageFragment extends Fragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-
             container.addView(mImageViews.get(position));
             return mImageViews.get(position);
         }

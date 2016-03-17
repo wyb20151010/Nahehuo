@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,6 +41,19 @@ public class CompCommentFragment extends Fragment
     private RecyclerView recycler_view;
     private Button btn_comp_comment;
     private CompanyDetailActivity mCompanyDetailActivity;
+    private String mCid;
+    private final static int COMPANY_IMPRESSION_LIST = 0;
+
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case COMPANY_IMPRESSION_LIST:
+
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
 
     @Override public void onAttach(Activity activity) {
@@ -63,6 +78,13 @@ public class CompCommentFragment extends Fragment
         initData();
         initTagFlowLayout(v);
         initPlv(v);
+        mCompanyDetailActivity.setComComment(
+                new CompanyDetailActivity.ConvertToComComment() {
+                    @Override public void convertToComComment(String cid) {
+                        mCid = cid;
+                        mHandler.sendEmptyMessage(COMPANY_IMPRESSION_LIST);
+                    }
+                });
         return v;
     }
 
@@ -141,13 +163,6 @@ public class CompCommentFragment extends Fragment
         });
         tfl_company_tag.setOnTagClickListener(this);
     }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
 
     @Override
     public boolean onTagClick(View view, int position, FlowLayout parent) {

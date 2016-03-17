@@ -51,16 +51,9 @@ public class PartnerRecUFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_part_rec_u, null);
         vp_content_title = (ViewPager) v.findViewById(R.id.vp_content_title);
         indicator = (CirclePageIndicator) v.findViewById(R.id.indicator);
-
+        initViewPager();
         initView(v);
         return v;
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initViewPager();
     }
 
 

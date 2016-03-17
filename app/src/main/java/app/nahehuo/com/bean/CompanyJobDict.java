@@ -10,6 +10,10 @@ public class CompanyJobDict {
     private String job_need;
 
 
+    public CompanyJobDict() {
+    }
+
+
     public CompanyJobDict(String job_name, String job_time, String job_wage, String job_need) {
         this.job_name = job_name;
         this.job_time = job_time;

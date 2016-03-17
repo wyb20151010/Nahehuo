@@ -3,7 +3,7 @@ package app.nahehuo.com.bean;
 /**
  * Created by Administrator on 2015/12/23.
  */
-public class TestData {
+public class CompHistory {
 
     private String title;
     private String content;

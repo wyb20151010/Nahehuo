@@ -13,13 +13,12 @@
     </LinearLayout>
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/ll_5"
-        android:id="@+id/swipe_refresh_widget"
+        android:id="@+id/srl_comp_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.RecyclerView
+        <app.nahehuo.com.view.AutoLoadRecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="500dp"/>

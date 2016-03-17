@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import app.nahehuo.com.R;
 import app.nahehuo.com.adapter.ProjectProgressAdapter;
-import app.nahehuo.com.bean.TestData;
+import app.nahehuo.com.bean.CompHistory;
 import app.nahehuo.com.view.MyListView;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class ProjectProgressActivity extends AppCompatActivity {
     protected Toolbar mToolbar;
     protected TextView tv_title;
     private MyListView plv_progress;
-    private List<TestData> TestDatas = new ArrayList<>();
+    private List<CompHistory> TestDatas = new ArrayList<>();
     private Context mContext;
     private ProjectProgressAdapter mAdapter;
     private TextView tv_one, tv_two, tv_three;
@@ -83,27 +83,27 @@ public class ProjectProgressActivity extends AppCompatActivity {
 
 
     private void initData() {
-        TestData testDataa= new TestData();
+        CompHistory testDataa= new CompHistory();
         testDataa.setTitle("项目谈成了~");
         testDataa.setContent("2015-12-11 16:30:31");
         TestDatas.add(testDataa);
 
-        TestData testData0= new TestData();
+        CompHistory testData0= new CompHistory();
         testData0.setTitle("已有合伙人发起约谈吧~");
         testData0.setContent("2015-12-11 16:30:31");
         TestDatas.add(testData0);
 
-        TestData testData = new TestData();
+        CompHistory testData = new CompHistory();
         testData.setTitle
                 ("你项目审核通过了，公布周期为365天，等待合伙人发起约谈吧快点来人啊我们要融资，我们要风投我们是未来的阿里，是未来的微信，是未来的苹果~");
         testData.setContent("2015-12-11 16:30:31");
         TestDatas.add(testData);
 
-        TestData testData1 = new TestData();
+        CompHistory testData1 = new CompHistory();
         testData1.setTitle("小二正在审核你的项目，皱着眉头想了很久~");
         testData1.setContent("2015-12-08 18:43:24");
         TestDatas.add(testData1);
-        TestData testData2 = new TestData();
+        CompHistory testData2 = new CompHistory();
         testData2.setTitle("小二查看了你提交的项目，高兴得不得了~");
         testData2.setContent("2015-12-08 18:42:35");
         TestDatas.add(testData2);
