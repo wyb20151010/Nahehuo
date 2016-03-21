@@ -128,8 +128,14 @@ public class CompJobFragment extends Fragment {
                                    mCompanyJobDicts.add(jobDict);
                                }
                                mCompanyJobAdapter.notifyDataSetChanged();
+                               if(srl_comp_job.isRefreshing()){
+                                   srl_comp_job.setRefreshing(false);
+                               }
                            }
                            else {
+                               if(srl_comp_job.isRefreshing()){
+                                   srl_comp_job.setRefreshing(false);
+                               }
                                /*MyToast.showToast(mContext,
                                        response.getMessage());*/
                            }

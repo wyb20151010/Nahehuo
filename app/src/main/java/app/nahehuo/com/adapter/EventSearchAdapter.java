@@ -80,7 +80,7 @@ public class EventSearchAdapter extends BaseAdapter {
         viewHolder.tv_event_time.setText(item.getTv_event_time());
         viewHolder.tv_event_location.setText(item.getTv_event_location());
         viewHolder.tv_event_distance.setText(item.getTv_event_distance());
-        viewHolder.tv_event_number.setText(item.getTv_event_number());
+        viewHolder.tv_event_number.setText(item.getTv_event_number()+"人");
         if (item.getType() == 0) {
             viewHolder.ll_tag.setBackgroundDrawable(mContext.getResources()
                                                             .getDrawable(

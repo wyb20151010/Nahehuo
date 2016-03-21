@@ -87,10 +87,9 @@ public class EventListAdapter extends BaseAdapter {
         viewHolder.tv_event_com_num.setText(item.getTv_event_com_num());
         viewHolder.tv_event_per_num.setText(item.getTv_event_per_num());
         viewHolder.tv_event_watch_num.setText(item.getTv_event_watch_num());
-        viewHolder.tv_event_comment.setText(item.getTv_event_comment());
         viewHolder.tv_event_distance.setText(item.getTv_event_distance());
         viewHolder.tv_event_location.setText(item.getTv_event_location());
-        viewHolder.tv_event_number.setText(item.getTv_event_number());
+        viewHolder.tv_event_number.setText(item.getTv_event_number()+"人");
         viewHolder.tv_event_time.setText(item.getTv_event_time());
         viewHolder.tv_per_pos.setText(item.getTv_per_pos());
         viewHolder.tv_per_name.setText(item.getTv_per_name());
@@ -108,7 +107,7 @@ public class EventListAdapter extends BaseAdapter {
             viewHolder.ll_tag.setBackgroundDrawable(mContext.getResources()
                                                             .getDrawable(
                                                                     R.drawable.checked_bg_red));
-            viewHolder.tv_tag.setText("300元/人");
+            viewHolder.tv_tag.setText(item.getEvent_price()+"元/人");
         }
         return v;
     }

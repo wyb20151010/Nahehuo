@@ -48,6 +48,11 @@ public class CompCommentAdapter
         ImageLoader.getInstance()
                    .displayImage(item.getAvater(),
                            viewHolder.iv_comment_avater);
+        if(item.getAnony()==2){
+            viewHolder.tv_comment_username.setText("匿名");
+        }else if(item.getAnony()==1){
+            viewHolder.tv_comment_username.setText(item.getUsername());
+        }
     }
 
 

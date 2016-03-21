@@ -127,12 +127,13 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:textColorHint="@color/textcolorgrayhint"
                     android:id="@+id/tv_start_time"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
-                    android:text="开始时间"
+                    android:hint="开始时间"
                     android:layout_centerVertical="true"
                     android:textColor="@color/textcolorgrayhint"
                     android:textSize="13sp"
@@ -155,12 +156,13 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColorHint="@color/textcolorgrayhint"
                     android:id="@+id/tv_end_time"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"
-                    android:text="结束时间"
+                    android:hint="结束时间"
                     android:layout_centerVertical="true"
                     android:textColor="@color/textcolorgrayhint"
                     android:textSize="13sp"
@@ -365,37 +367,38 @@
                     android:text="收费"/>
 
             </RelativeLayout>
-           <LinearLayout
-               android:id="@+id/ll_charge"
-               android:orientation="vertical"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-               <LinearLayout
-                   android:layout_marginLeft="200dp"
-                   android:background="@color/linecolorgray"
-                   android:layout_width="match_parent"
-                   android:layout_height="1px">
 
-               </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_charge"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginLeft="200dp"
+                    android:background="@color/linecolorgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px">
 
-                   <TextView
-                       android:layout_marginBottom="20dp"
-                       android:layout_marginTop="20dp"
-                       android:layout_marginRight="10dp"
-                       android:layout_alignParentRight="true"
-                       android:text="活动报名费用 元/人"
-                       android:layout_centerVertical="true"
-                       android:textColor="@color/textcolorgrayhint"
-                       android:textSize="13sp"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"/>
-               </RelativeLayout>
-           </LinearLayout>
+                </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_alignParentRight="true"
+                        android:text="活动报名费用 元/人"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/textcolorgrayhint"
+                        android:textSize="13sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:background="@color/linecolorgray"

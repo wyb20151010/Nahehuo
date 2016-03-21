@@ -42,7 +42,7 @@ public class JobPositionActivity extends AppCompatActivity
     private Context mContext;
 
     private List<ListJob> mJobListDict = new ArrayList<>();
-    private RelativeLayout rl_job_internship, rl_job_parttime;
+    private RelativeLayout rl_job_internship, rl_job_parttime, rl_subscibe;
 
     private int pageindex;// 页数
     private static final int JOB_LIST = 0;
@@ -171,6 +171,8 @@ public class JobPositionActivity extends AppCompatActivity
         rl_job_internship.setOnClickListener(this);
         rl_job_parttime = (RelativeLayout) findViewById(R.id.rl_job_parttime);
         rl_job_parttime.setOnClickListener(this);
+        rl_subscibe = (RelativeLayout) findViewById(R.id.rl_subscibe);
+        rl_subscibe.setOnClickListener(this);
     }
 
 
@@ -248,6 +250,9 @@ public class JobPositionActivity extends AppCompatActivity
                 startActivity(intent1);
                 overridePendingTransition(R.anim.push_left_in,
                         R.anim.push_left_out);
+                break;
+            case R.id.rl_subscibe:
+                startActivity(new Intent(mContext, JobSubscribeActivity.class));
                 break;
         }
     }

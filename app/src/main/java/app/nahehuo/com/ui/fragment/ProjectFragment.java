@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,24 +19,25 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import app.nahehuo.com.R;
 import app.nahehuo.com.adapter.FindPartnerAdapter;
-import app.nahehuo.com.adapter.GirdDropDownAdapter;
+import app.nahehuo.com.base.GlobalVariables;
+import app.nahehuo.com.bean.NetProjectRecom;
 import app.nahehuo.com.bean.ProjectListDict;
 import app.nahehuo.com.eventbus.ToolBarEvent;
+import app.nahehuo.com.network.GsonCallBack;
 import app.nahehuo.com.ui.MainActivity;
 import app.nahehuo.com.ui.project.ProjectDetailActivity;
 import app.nahehuo.com.ui.project.ProjectPubActivity;
 import app.nahehuo.com.ui.project.ProjectSearchActivity;
-import app.nahehuo.com.ui.project.popup.MenuPopup;
 import app.nahehuo.com.view.CardItemViewProject;
 import app.nahehuo.com.view.CardSlidePanelProject;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.victor.loading.rotate.RotateLoading;
-import com.yyydjk.library.DropDownMenu;
+import com.zhy.http.okhttp.OkHttpUtils;
 import de.greenrobot.event.EventBus;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,20 +58,72 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
     private Context context;
     private TextView temp;
     private LinearLayout ll_cursor;
-    private int width, height;
-    private MenuPopup mMenuPopup;
-    private DropDownMenu mDropDownMenu;
-    private String headers[] = { "城市","行业" };
-    private String citys[] = { "不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆",
-            "天津", "西安", "南京", "杭州" , "成都", "广州", "深圳", "重庆"};
-    private String industries[]={"计算机科学与技术","机械制造和自动化","网络技术","社会主义"};
-    private String constellations[] = {"不限", "白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "双鱼座"};
-    private String sexs[] = {"不限", "男", "女"};
-
-    private GirdDropDownAdapter cityAdapter;
     private List<View> popupViews = new ArrayList<>();
     private LinearLayout ll_content;
     private RotateLoading mLoading;
+    private FindPartnerAdapter mAdapter;
+    private RelativeLayout rl_city, rl_indus, rl_type, rl_status;
+    private TextView tv_city, tv_indus, tv_type, tv_status;
+
+    private final static int PROJECT_RECOMMEND = 0;
+
+    private int width;
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case PROJECT_RECOMMEND:
+                    recommendProject();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
+
+    private void recommendProject() {
+        OkHttpUtils.get()
+                   .url(GlobalVariables.PROJECT_RECOMMEND)
+                   .addParams("access_token", GlobalVariables.access_token)
+                   .addParams("device", GlobalVariables.device)
+                   .build()
+                   .execute(new GsonCallBack<NetProjectRecom>(
+                           NetProjectRecom.class) {
+                       @Override
+                       public void onResponse(NetProjectRecom response) {
+                           if (response.getCode() == 200) {
+                               for (int i = 0;
+                                    i < response.getData().size();
+                                    i++) {
+                                   ProjectListDict dict = new ProjectListDict();
+                                   dict.setProjectComName(response.getData()
+                                                                  .get(i)
+                                                                  .getUsername());
+                                   dict.setProjectComPosition(response.getData()
+                                                                      .get(i)
+                                                                      .getCompany());
+                                   dict.setProjectPic(
+                                           response.getData().get(i).getPic());
+                                   dict.setPersonPic(response.getData()
+                                                             .get(i)
+                                                             .getAvatar());
+                                   List<String> tags = new ArrayList<String>();
+                                   tags.add(
+                                           response.getData().get(i).getArea());
+                                   tags.add("寻求合伙人");
+                                   tags.addAll(Arrays.asList(response.getData()
+                                                                     .get(i)
+                                                                     .getTag()
+                                                                     .split(",")));
+                                   dict.setProjectTagList(tags);
+                                   mProjectListDicts.add(dict);
+                               }
+                               mCardSlidePanel.fillData(mProjectListDicts);
+                           }
+                           super.onResponse(response);
+                       }
+                   });
+    }
+
 
     @Override public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -85,7 +140,6 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EventBus.getDefault().register(this);
     }
 
 
@@ -99,71 +153,45 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
         plv_project_list = (PullToRefreshListView) v.findViewById(
                 R.id.plv_project_list);
         temp = new TextView(context);
-        ll_cursor = (LinearLayout) v.findViewById(R.id.ll_cursor);
-        WindowManager wm = (WindowManager) getContext().getSystemService(
-                Context.WINDOW_SERVICE);
-
-        width = wm.getDefaultDisplay().getWidth();
-        height = wm.getDefaultDisplay().getHeight();
         initData();
-        initDropDownMenu(inflater, v);
-        initPlv();
+        initView(v);
+        initCursor(v);
         initCardSlidePanel(v);
-
+        initPlv();
+        mHandler.sendEmptyMessage(PROJECT_RECOMMEND);
         return v;
     }
 
 
-    private void initDropDownMenu(LayoutInflater inflater, View v) {
-        ll_content = (LinearLayout) v.findViewById(R.id.ll_content);
-        mDropDownMenu = (DropDownMenu) v.findViewById(R.id.dropDownMenu);
-        final ListView cityView = (ListView) inflater.inflate(R.layout.item_cityview,null);
-        cityAdapter = new GirdDropDownAdapter(context, Arrays.asList(citys));
-        cityView.setDividerHeight(0);
-        cityView.setAdapter(cityAdapter);
-        popupViews.add(cityView);
-        cityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cityAdapter.setCheckItem(position);
-                mDropDownMenu.setTabText(
-                        position == 0 ? headers[0] : citys[position]);
-                mDropDownMenu.closeMenu();
-            }
-        });
-
-        final ListView indView = (ListView) inflater.inflate(R.layout
-                .item_cityview,null);
-        cityAdapter = new GirdDropDownAdapter(context, Arrays.asList(industries));
-        indView.setDividerHeight(0);
-        indView.setAdapter(cityAdapter);
-        popupViews.add(indView);
-        indView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cityAdapter.setCheckItem(position);
-                mDropDownMenu.setTabText(
-                        position == 0 ? headers[1] : industries[position]);
-                mDropDownMenu.closeMenu();
-            }
-        });
-        View content = inflater.inflate(R.layout.footview, null);
-        plv_project_list = (PullToRefreshListView) content.findViewById(
-                R.id.plv_project_list);
-        mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews,
-                content);
+    private void initView(View v) {
+        rl_city = (RelativeLayout) v.findViewById(R.id.rl_city);
+        rl_indus = (RelativeLayout) v.findViewById(R.id.rl_indus);
+        rl_type = (RelativeLayout) v.findViewById(R.id.rl_type);
+        rl_status = (RelativeLayout) v.findViewById(R.id.rl_status);
+        tv_city = (TextView) v.findViewById(R.id.tv_city);
+        tv_indus = (TextView) v.findViewById(R.id.tv_indus);
+        tv_type = (TextView) v.findViewById(R.id.tv_type);
+        tv_status = (TextView) v.findViewById(R.id.tv_status);
+        rl_city.setOnClickListener(this);
+        rl_indus.setOnClickListener(this);
+        rl_type.setOnClickListener(this);
+        rl_status.setOnClickListener(this);
     }
 
 
-    public void onEventMainThread(ToolBarEvent item) {
-
+    private void initCursor(View v) {
+        WindowManager wm = (WindowManager) getContext().getSystemService(
+                Context.WINDOW_SERVICE);
+        width = wm.getDefaultDisplay().getWidth();
+        ll_cursor = (LinearLayout) v.findViewById(R.id.ll_cursor);
+        ll_cursor.getLayoutParams().width = width / 4;
+        fromStateTo(temp, tv_city, 0);
     }
 
 
     private void initPlv() {
         plv_project_list.setMode(PullToRefreshBase.Mode.BOTH);
-        FindPartnerAdapter mAdapter = new FindPartnerAdapter(mProjectListDicts,
-                context);
+        mAdapter = new FindPartnerAdapter(mProjectListDicts, context);
         plv_project_list.setAdapter(mAdapter);
         plv_project_list.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
@@ -226,13 +254,6 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    /*
-     Arrays.asList(
-        new TagItemColor[] { new TagItemColor(0xfff07669, "上海"),
-                new TagItemColor(0xff58c490, "寻求合伙人"),
-                new TagItemColor(0xff6dcff6, "城市合伙人") }*/
-
-
     private void initData() {
         mProjectListDicts.add(new ProjectListDict("寻皮革网---千亿级项目招募省级城市合伙人",
                 "千亿级潜力市场的项目，皮革行业B2B+O2O+金融服务", "樱桃小丸子", "后台产品经理-今翌信息科技（上海）有限公司",
@@ -265,11 +286,6 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            /*case R.id.open_pro:
-                mMenuPopup = new MenuPopup(mainActivity);
-                mMenuPopup.showPopupWindow(tv_pro_state);
-                break;*/
-
             case R.id.start_pro:
                 startActivity(new Intent(context, ProjectPubActivity.class));
                 mainActivity.overridePendingTransition(R.anim.push_left_in,
@@ -280,28 +296,6 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
                 mainActivity.overridePendingTransition(R.anim.push_left_in,
                         R.anim.push_left_out);
                 break;
-           /* case R.id.open_pro:
-                mMenuPopup=new MenuPopup(mainActivity);
-                mMenuPopup.showPopupWindow(mainActivity.findViewById(R.id.open_pro));*/
-              /*  LinearLayout ll_start_pro= (LinearLayout) mMenuPopup.getPopupView()
-                                                     .findViewById(
-                                                             R.id.ll_start_pro);
-                ll_start_pro.setOnClickListener(this);
-                LinearLayout ll_search_pro= (LinearLayout) mMenuPopup.getPopupView()
-                                                                    .findViewById(
-                                                                            R.id.ll_search_pro);
-                ll_search_pro.setOnClickListener(this);
-
-                LinearLayout ll_my_pro= (LinearLayout) mMenuPopup.getPopupView()
-                                                                     .findViewById(
-                                                                             R.id.ll_my_pro);
-                ll_my_pro.setOnClickListener(this);
-
-                LinearLayout ll_apply_partner= (LinearLayout) mMenuPopup.getPopupView()
-                                                                 .findViewById(
-                                                                         R.id.ll_apply_partner);
-                ll_apply_partner.setOnClickListener(this);*/
-                /*break;*/
         }
         return super.onOptionsItemSelected(item);
     }
@@ -309,13 +303,11 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
 
     @Override public void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 
 
     @Override public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.ll_start_pro:
                 startActivity(new Intent(context, ProjectPubActivity.class));
                 mainActivity.overridePendingTransition(R.anim.push_left_in,
@@ -325,6 +317,18 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(context, ProjectSearchActivity.class));
                 mainActivity.overridePendingTransition(R.anim.push_left_in,
                         R.anim.push_left_out);
+                break;
+            case R.id.rl_city:
+                fromStateTo(temp, tv_city, 0);
+                break;
+            case R.id.rl_indus:
+                fromStateTo(temp, tv_indus, width / 4);
+                break;
+            case R.id.rl_type:
+                fromStateTo(temp, tv_type, width * 2 / 4);
+                break;
+            case R.id.rl_status:
+                fromStateTo(temp, tv_status, width * 3 / 4);
                 break;
         }
     }
@@ -342,7 +346,6 @@ public class ProjectFragment extends Fragment implements View.OnClickListener {
 
 
     private void startAnim(int i) {
-
         ObjectAnimator animator = ObjectAnimator.ofFloat(ll_cursor,
                 "translationX", i);
         animator.setDuration(300);

@@ -31,6 +31,7 @@ import app.nahehuo.com.bean.NetCompanyProduct;
 import app.nahehuo.com.bean.NetCompanyTag;
 import app.nahehuo.com.bean.NetCompanyTeam;
 import app.nahehuo.com.network.GsonCallBack;
+import app.nahehuo.com.network.JsonObjectCallback;
 import app.nahehuo.com.ui.job.CompanyDetailActivity;
 import app.nahehuo.com.ui.job.CompanyFounderActivity;
 import app.nahehuo.com.util.MyToast;
@@ -42,11 +43,14 @@ import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by WYB on 2016/1/11.
  */
-public class CompHomePageFragment extends Fragment {
+public class CompHomePageFragment extends Fragment
+        implements View.OnClickListener {
 
     private Context mContext;
     private ViewPager vp_content, vp_content_team;
@@ -56,7 +60,7 @@ public class CompHomePageFragment extends Fragment {
     private TagFlowLayout tfl_company_tag;
     private CirclePageIndicator indicator, indicator_team;
     private List<ImageView> imageViews = new ArrayList<>();
-
+    private ImageView iv_add;
     private TagAdapter<List<String>> tagAdapter;
     private CompanyDetailActivity mCompanyDetailActivity;
 
@@ -69,6 +73,7 @@ public class CompHomePageFragment extends Fragment {
     private final static int COMPANY_TAG = 0;
     private final static int COMPANY_PRODUCT = 1;
     private final static int COMPANY_TEAM = 2;
+    private final static int COMPANY_COLLECT = 3;
     private Handler mHandler = new Handler() {
         @Override public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -81,10 +86,42 @@ public class CompHomePageFragment extends Fragment {
                 case COMPANY_TEAM:
                     findCompanyTeam();
                     break;
+                case COMPANY_COLLECT:
+                    collectCompany();
+                    break;
             }
             super.handleMessage(msg);
         }
     };
+
+
+    private void collectCompany() {
+        OkHttpUtils.get()
+                   .url(GlobalVariables.COMPANY_COLLECT_CREATE)
+                   .addParams("access_token", GlobalVariables.access_token)
+                   .addParams("device", GlobalVariables.device)
+                   .addParams("cid", mCid)
+                   .build()
+                   .execute(new JsonObjectCallback() {
+                       @Override public void onResponse(String response) {
+                           try {
+                               JSONObject jsonObject = new JSONObject(response);
+                               int code = jsonObject.getInt("code");
+                               if (code == 200) {
+                                   MyToast.showToast(mContext,
+                                           jsonObject.getString("message"));
+                               }
+                               else {
+                                   MyToast.showToast(mContext,
+                                           jsonObject.getString("message"));
+                               }
+                           } catch (JSONException e) {
+                               e.printStackTrace();
+                           }
+                           super.onResponse(response);
+                       }
+                   });
+    }
 
 
     private void findCompanyTeam() {
@@ -246,7 +283,8 @@ public class CompHomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_comp_home, null);
         mContext = getActivity();
-
+        iv_add = (ImageView) v.findViewById(R.id.iv_add);
+        iv_add.setOnClickListener(this);
         indicator_team = (CirclePageIndicator) v.findViewById(
                 R.id.indicator_team);
         vp_content_team = (ViewPager) v.findViewById(R.id.vp_content_team);
@@ -385,6 +423,15 @@ public class CompHomePageFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+
+    @Override public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_add:
+                mHandler.sendEmptyMessage(COMPANY_COLLECT);
+                break;
+        }
     }
 
 

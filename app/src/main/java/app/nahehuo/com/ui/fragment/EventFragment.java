@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,20 +22,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import app.nahehuo.com.R;
 import app.nahehuo.com.adapter.EventListAdapter;
+import app.nahehuo.com.base.GlobalVariables;
 import app.nahehuo.com.bean.EventListDict;
+import app.nahehuo.com.bean.NetEventList;
+import app.nahehuo.com.network.GsonCallBack;
 import app.nahehuo.com.ui.MainActivity;
 import app.nahehuo.com.ui.event.EventDetailActivity;
 import app.nahehuo.com.ui.event.EventPubActivity;
 import app.nahehuo.com.ui.event.EventSearchActivity;
+import app.nahehuo.com.util.MyToast;
+import app.nahehuo.com.util.VeDate;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.zhy.http.okhttp.OkHttpUtils;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by WYB on 2015/12/24.
  */
-public class EventFragment extends Fragment implements View.OnClickListener {
+public class EventFragment extends Fragment implements View.OnClickListener,
+        PullToRefreshBase.OnRefreshListener {
 
     private Context mContext;
     private MainActivity mainActivity;
@@ -45,6 +54,120 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     private PullToRefreshListView plv_event_list;
     private EventListAdapter mEventListAdapter;
     private List<EventListDict> mListDicts = new ArrayList<>();
+    private final static int FIND_EVENT_LIST = 0;
+
+    private int pageindex;
+    //推荐 0 不推荐，1推荐默认 1
+    private int recommend=1;
+    private long time;
+    private String distance;
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case FIND_EVENT_LIST:
+                    findEventList();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
+
+    private void findEventList() {
+
+        plv_event_list.onRefreshComplete();
+        if(pageindex==1){
+            mListDicts.clear();
+        }
+        OkHttpUtils.get()
+                   .url(GlobalVariables.EVENT_LIST)
+                   .addParams("access_token", GlobalVariables.access_token)
+                   .addParams("device", GlobalVariables.device)
+                   .addParams("recommend", recommend + "")
+                   .addParams("time", time + "")
+                  /* .addParams("distance", distance)*/
+                   .addParams("pageindex", pageindex + "")
+                   .addParams("pagesize", GlobalVariables.pagesize)
+                   .build()
+                   .execute(new GsonCallBack<NetEventList>(NetEventList.class) {
+                       @Override public void onResponse(NetEventList response) {
+                           if (response.getCode() == 200) {
+                               for (int i = 0;
+                                    i < response.getData().size();
+                                    i++) {
+                                   EventListDict event = new EventListDict();
+                                   event.setIv_per_avater(response.getData()
+                                                                  .get(i)
+                                                                  .getAvatar());
+                                   event.setTv_event_title(response.getData()
+                                                                   .get(i)
+                                                                   .getTitle());
+                                   event.setTv_per_name(response.getData()
+                                                                .get(i)
+                                                                .getUsername());
+                                   StringBuffer sb = new StringBuffer();
+                                   sb.append(
+                                           response.getData().get(i).getJob());
+                                   sb.append("-");
+                                   sb.append(response.getData()
+                                                     .get(i)
+                                                     .getCompany());
+                                   event.setTv_per_pos(sb.toString());
+                                   StringBuffer sb1 = new StringBuffer();
+                                   sb1.append(VeDate.formatEventTime(
+                                           response.getData()
+                                                   .get(i)
+                                                   .getStarted()));
+                                   sb1.append(" 至 ");
+                                   sb1.append(VeDate.formatEventTime(
+                                           response.getData()
+                                                   .get(i)
+                                                   .getEnded()));
+                                   event.setTv_event_time(sb1.toString());
+                                   event.setTv_event_number(response.getData()
+                                                                    .get(i)
+                                                                    .getEventnum() +
+                                           "");
+                                   event.setType(response.getData()
+                                                         .get(i)
+                                                         .getEventprice());
+                                   event.setEvent_price(response.getData()
+                                                                .get(i)
+                                                                .getPrice());
+                                   StringBuffer buffer = new StringBuffer();
+                                   buffer.append(
+                                           response.getData().get(i).getProv());
+                                   buffer.append(
+                                           response.getData().get(i).getCity());
+                                   buffer.append(response.getData()
+                                                         .get(i)
+                                                         .getAddress());
+                                   event.setTv_event_location(
+                                           buffer.toString());
+                                   event.setTv_event_watch_num(
+                                           response.getData()
+                                                   .get(i)
+                                                   .getViewnum() + "");
+                                   event.setTv_event_com_num(response.getData()
+                                                                     .get(i)
+                                                                     .getComnum() +
+                                           "");
+                                   event.setTv_event_per_num(response.getData()
+                                                                     .get(i)
+                                                                     .getFollownum() +
+                                           "");
+                                   mListDicts.add(event);
+                               }
+                               mEventListAdapter.notifyDataSetChanged();
+                           }
+                           else {
+                               MyToast.showToast(mContext,
+                                       response.getMessage());
+                           }
+                           super.onResponse(response);
+                       }
+                   });
+    }
 
 
     @Override public void onAttach(Activity activity) {
@@ -64,6 +187,7 @@ public class EventFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_event, null);
         mContext = getActivity();
+        pageindex = 1;
         temp = new TextView(mContext);
         ll_cursor = (LinearLayout) v.findViewById(R.id.ll_cursor);
         WindowManager wm = (WindowManager) getContext().getSystemService(
@@ -72,12 +196,12 @@ public class EventFragment extends Fragment implements View.OnClickListener {
         width = wm.getDefaultDisplay().getWidth();
         initView(v);
         initFLv(v);
+        mHandler.sendEmptyMessage(FIND_EVENT_LIST);
         return v;
     }
 
 
     private void initFLv(View v) {
-        initData();
         mEventListAdapter = new EventListAdapter(mListDicts, mContext);
         plv_event_list = (PullToRefreshListView) v.findViewById(
                 R.id.plv_event_list);
@@ -93,27 +217,8 @@ public class EventFragment extends Fragment implements View.OnClickListener {
                                 R.anim.push_left_in, R.anim.push_left_out);
                     }
                 });
+        plv_event_list.setOnRefreshListener(this);
     }
-
-
-    private void initData() {
-        mListDicts.add(new EventListDict("大工厂------专注于打造“服饰生态圈”的互联网公司", "樱桃小王子",
-                "后台产品经理 - 今翌信息科技（上海）有限公司", "2015-12-31 05:00 至2016-02-01",
-                "1000人", "上海市松江区九新公路341弄28号7层", "99", "本人多个创业项目，想找技术或创业人士聊聊",
-                "88", "55", "55",
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg", 1));
-        mListDicts.add(new EventListDict("大工厂------专注于打造“服饰生态圈”的互联网公司", "樱桃小王子",
-                "后台产品经理 - 今翌信息科技（上海）有限公司", "2015-12-31 05:00 至2016-02-01",
-                "1000人", "上海市松江区九新公路341弄28号7层", "99", "本人多个创业项目，想找技术或创业人士聊聊",
-                "88", "55", "55",
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg", 0));
-        mListDicts.add(new EventListDict("大工厂------专注于打造“服饰生态圈”的互联网公司", "樱桃小王子",
-                "后台产品经理 - 今翌信息科技（上海）有限公司", "2015-12-31 05:00 至2016-02-01",
-                "1000人", "上海市松江区九新公路341弄28号7层", "99", "本人多个创业项目，想找技术或创业人士聊聊",
-                "88", "55", "55",
-                "http://www.nahehuo.com/thumb/6/9/b8/32410_middle.jpg", 1));
-    }
-
 
     private void initView(View v) {
         rl_event_recom = (RelativeLayout) v.findViewById(R.id.rl_event_recom);
@@ -195,5 +300,18 @@ public class EventFragment extends Fragment implements View.OnClickListener {
                 "translationX", i);
         animator.setDuration(300);
         animator.start();
+    }
+
+
+    @Override public void onRefresh(PullToRefreshBase refreshView) {
+        if(refreshView.isHeaderShown()){
+            pageindex=1;
+            mListDicts.clear();
+            mHandler.sendEmptyMessage(FIND_EVENT_LIST);
+
+        }else if(refreshView.isFooterShown()){
+            pageindex++;
+            mHandler.sendEmptyMessage(FIND_EVENT_LIST);
+        }
     }
 }

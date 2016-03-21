@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +17,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.Gravity;
@@ -30,11 +33,15 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import app.nahehuo.com.R;
+import app.nahehuo.com.base.GlobalVariables;
+import app.nahehuo.com.network.JsonObjectCallback;
 import app.nahehuo.com.util.ShowToast;
+import app.nahehuo.com.util.VeDate;
 import com.appeaser.sublimepickerlibrary.helpers.SublimeOptions;
 import com.appeaser.sublimepickerlibrary.recurrencepicker.SublimeRecurrencePicker;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.download.ImageDownloader;
+import com.zhy.http.okhttp.OkHttpUtils;
 import java.io.File;
 import java.util.Calendar;
 
@@ -68,6 +75,61 @@ public class EventPubActivity extends AppCompatActivity
     private SublimePickerFragment mFragment = new SublimePickerFragment();
     private TextView tv_start_time, tv_end_time, tv_event_description;
     private SavePopupEvent mSavePopup;
+    private int eid;
+    private String pic_data;
+    private String title;
+    private File pic;
+    private long started, ended;
+    private String provid;
+    private String cityid;
+    private String address;
+    private int eventnum;
+    private int price;
+    private int themeid;
+    private int styleid;
+    private String content;
+    private final static int EVENT_UPDATE = 0;
+
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case EVENT_UPDATE:
+                    eventUpdate();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
+
+    private void eventUpdate() {
+        OkHttpUtils.post()
+                   .url(GlobalVariables.EVENT_UPDATE)
+                   .addParams("access_token", GlobalVariables.access_token)
+                   .addParams("device", GlobalVariables.device)
+                   .addParams("eid", eid + "")
+                   .addParams("pic_data", pic_data)
+                   .addParams("title", title)
+                   .addFile("pic", "pic", pic)
+                   .addParams("started", started + "")
+                   .addParams("ended", ended + "")
+                   .addParams("provid", provid)
+                   .addParams("cityid", cityid)
+                   .addParams("address", address)
+                   .addParams("eventnum", eventnum + "")
+                   .addParams("price", price + "")
+                   .addParams("themeid", themeid + "")
+                   .addParams("styleid", styleid + "")
+                   .addParams("content", content)
+                   .build()
+                   .execute(new JsonObjectCallback() {
+                       @Override public void onResponse(String response) {
+                           super.onResponse(response);
+                       }
+                   });
+        startActivity(new Intent(mContext, EventPubSucsActivity.class));
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+    }
 
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -176,8 +238,11 @@ public class EventPubActivity extends AppCompatActivity
                 pop.dismiss();
                 break;
             case R.id.tv_pub:
-                overridePendingTransition(R.anim.push_left_in,
-                        R.anim.push_left_out);
+                if(!TextUtils.isEmpty(tv_start_time.getText().toString())
+                        &&!TextUtils.isEmpty(tv_end_time.getText().toString()
+                )){
+                    mHandler.sendEmptyMessage(EVENT_UPDATE);
+                }
                 break;
             case R.id.tv_free:
                 changeFromTo(temp, v);
@@ -188,10 +253,10 @@ public class EventPubActivity extends AppCompatActivity
                 ll_charge.setVisibility(View.VISIBLE);
                 break;
             case R.id.ll_start_time:
-                getDateTime(tv_start_time);
+                getDateTime(tv_start_time, 0);
                 break;
             case R.id.ll_end_time:
-                getDateTime(tv_end_time);
+                getDateTime(tv_end_time, 1);
                 break;
             case R.id.rl_event_description:
                 Intent intent = new Intent(mContext,
@@ -204,7 +269,7 @@ public class EventPubActivity extends AppCompatActivity
     }
 
 
-    private void getDateTime(final TextView tv) {
+    private void getDateTime(final TextView tv, final int type) {
         int displayOptions = 0;
         SublimeOptions options = new SublimeOptions();
         displayOptions |= SublimeOptions.ACTIVATE_DATE_PICKER;
@@ -227,18 +292,34 @@ public class EventPubActivity extends AppCompatActivity
                 tv.setText(sb.toString());
                 tv.setTextColor(getResources().getColor(R.color.black));
                 tv.setTextSize(15);
+                StringBuffer buffer = new StringBuffer();
+                buffer.append(year);
+                buffer.append("-");
+                buffer.append(monthOfYear + 1);
+                buffer.append("-");
+                buffer.append(dayOfMonth);
+                buffer.append(" " + hourOfDay);
+                buffer.append(":");
+                buffer.append(minute);
+                buffer.append(":");
+                buffer.append("30");
+                if (type == 0) {
+                    started = VeDate.strToDateLong(buffer.toString()).getTime();
+                }
+                else {
+                    ended = VeDate.strToDateLong(buffer.toString()).getTime();
+                }
             }
         });
         Bundle bundle = new Bundle();
         bundle.putParcelable("SUBLIME_OPTIONS",
                 new Pair<>(displayOptions != 0 ? Boolean.TRUE : Boolean.FALSE,
                         options).second);
-        if(!mFragment.isAdded()){
+        if (!mFragment.isAdded()) {
             mFragment.setArguments(bundle);
             mFragment.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
             mFragment.show(getSupportFragmentManager(), "SUBLIME_PICKER");
         }
-
     }
 
 
@@ -256,21 +337,10 @@ public class EventPubActivity extends AppCompatActivity
     }
 
 
-    /* @Override public boolean onCreateOptionsMenu(Menu menu) {
-         getMenuInflater().inflate(R.menu.job, menu);
-         return super.onCreateOptionsMenu(menu);
-     }
- */
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 showMaterialDialog();
-                break;
-            case R.id.refresh:
-               /* if (tfl_add_tag.getChildCount() > 0 &&
-                        TextUtil.isEmpty(tv_pro_values.getText().toString()) &&
-                        TextUtil.isEmpty(tv_pro_intro.getText().toString())) {*/
-               /* }*/
                 break;
         }
         return super.onOptionsItemSelected(item);

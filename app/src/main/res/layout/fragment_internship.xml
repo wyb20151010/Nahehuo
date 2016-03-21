@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/ll_title"
@@ -14,6 +15,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
+
             <TextView
                 android:textColor="@color/textcolorgray"
                 android:textSize="17sp"
@@ -22,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
+
         <LinearLayout
             android:layout_gravity="center_vertical"
             android:background="@color/linecolorgray"
@@ -34,6 +37,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
+
             <TextView
                 android:textColor="@color/textcolorgray"
                 android:textSize="17sp"
@@ -42,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
+
         <LinearLayout
             android:layout_gravity="center_vertical"
             android:background="@color/linecolorgray"
@@ -49,10 +54,12 @@
             android:layout_height="20dp">
 
         </LinearLayout>
+
         <RelativeLayout
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
+
             <TextView
                 android:textColor="@color/textcolorgray"
                 android:textSize="17sp"
@@ -72,12 +79,13 @@
         android:background="@color/backgroundgray">
 
     </LinearLayout>
+
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:layout_below="@+id/ll_1"
         android:id="@+id/plv_internship"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+        android:layout_height="wrap_content"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
     <Button
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"

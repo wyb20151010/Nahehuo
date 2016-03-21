@@ -799,6 +799,13 @@
             android:theme="@style/AppTheme.two">
 
         </activity>
+        <activity
+            android:name=".ui.event.EventPubSucsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.two">
+
+        </activity>
 
         <service android:name=".service.SaveCommonDictService"></service>
     </application>

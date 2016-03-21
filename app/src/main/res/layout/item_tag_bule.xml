@@ -9,7 +9,7 @@
     android:paddingRight="10dp"
     android:paddingBottom="3dp"
     android:paddingTop="3dp"
-    android:background="@drawable/bg_shape_round"
+    android:background="@drawable/bg_shape_round_blue"
     android:textColor="@color/white"
     android:text="傻瓜是你 9"
     xmlns:android="http://schemas.android.com/apk/res/android"/>

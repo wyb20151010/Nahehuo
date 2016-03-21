@@ -19,22 +19,21 @@
             android:layout_height="wrap_content"
             android:background="@color/white">
 
-            <LinearLayout
+            <RelativeLayout
                 android:background="@color/jobtitlecolor"
                 android:layout_width="match_parent"
                 android:layout_height="34dp">
 
                 <TextView
+                    android:layout_centerInParent="true"
                     android:id="@+id/tv_event_title"
-                    android:layout_marginLeft="10dp"
                     android:singleLine="true"
-                    android:layout_gravity="center_vertical"
                     android:textSize="15sp"
                     android:textColor="@color/white"
                     android:text="大工厂------专注于打造“服饰生态圈”的互联网公司"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -164,6 +163,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
                     <TextView
+                        android:singleLine="true"
                         android:id="@+id/tv_event_location"
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@+id/iv_event_location"

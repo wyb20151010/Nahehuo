@@ -18,22 +18,16 @@ public class EventListDict {
     String tv_event_per_num;
     String iv_per_avater;
     int type;
+    String event_price;
 
 
-    public EventListDict(String tv_event_title, String tv_per_name, String tv_per_pos, String tv_event_time, String tv_event_number, String tv_event_location, String tv_event_distance, String tv_event_comment, String tv_event_watch_num, String tv_event_com_num, String tv_event_per_num, String iv_per_avater, int type) {
-        this.tv_event_title = tv_event_title;
-        this.tv_per_name = tv_per_name;
-        this.tv_per_pos = tv_per_pos;
-        this.tv_event_time = tv_event_time;
-        this.tv_event_number = tv_event_number;
-        this.tv_event_location = tv_event_location;
-        this.tv_event_distance = tv_event_distance;
-        this.tv_event_comment = tv_event_comment;
-        this.tv_event_watch_num = tv_event_watch_num;
-        this.tv_event_com_num = tv_event_com_num;
-        this.tv_event_per_num = tv_event_per_num;
-        this.iv_per_avater = iv_per_avater;
-        this.type = type;
+    public String getEvent_price() {
+        return event_price;
+    }
+
+
+    public void setEvent_price(String event_price) {
+        this.event_price = event_price;
     }
 
 

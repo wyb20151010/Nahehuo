@@ -49,26 +49,123 @@
         app:loading_width="5dp"/>
 
     <LinearLayout
-        android:background="#F3F3F3"
+        android:background="@color/white"
         android:visibility="invisible"
         android:id="@+id/ll_find_partner"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.yyydjk.library.DropDownMenu
-            android:id="@+id/dropDownMenu"
+        <LinearLayout
+            android:id="@+id/ll_title"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:ddmenuTextSize="15sp"
-            app:ddtextUnselectedColor="@color/textcolorgray"
-            app:ddtextSelectedColor="@color/colorPrimary"
-            app:dddividerColor="@color/gray"
-            app:ddunderlineColor="@color/gray"
-            app:ddmenuSelectedIcon="@drawable/drop_down_selected_icon"
-            app:ddmenuBackgroundColor="@color/white"
-            app:ddmenuUnselectedIcon="@drawable/drop_down_unselected_icon"
-            />
+            android:layout_height="35dp">
 
+            <RelativeLayout
+                android:id="@+id/rl_city"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/tv_city"
+                    android:textColor="@color/textcolorgray"
+                    android:textSize="17sp"
+                    android:layout_centerInParent="true"
+                    android:text="城市"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:background="@color/linecolorgray"
+                android:layout_width="1px"
+                android:layout_height="20dp">
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_indus"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_indus"
+                    android:textColor="@color/textcolorgray"
+                    android:textSize="17sp"
+                    android:layout_centerInParent="true"
+                    android:text="行业"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:background="@color/linecolorgray"
+                android:layout_width="1px"
+                android:layout_height="20dp">
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_type"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:textColor="@color/textcolorgray"
+                    android:textSize="17sp"
+                    android:layout_centerInParent="true"
+                    android:text="类型"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:background="@color/linecolorgray"
+                android:layout_width="1px"
+                android:layout_height="20dp">
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_status"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:textColor="@color/textcolorgray"
+                    android:textSize="17sp"
+                    android:layout_centerInParent="true"
+                    android:text="状态"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/ll_cursor"
+            android:layout_below="@+id/ll_title"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary">
+
+        </LinearLayout>
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="55dp"
+            android:divider="@null"
+            android:id="@+id/plv_project_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
     </LinearLayout>
 </FrameLayout>

@@ -12,18 +12,6 @@ public class EventSearchList {
     String tv_event_number;
     int type;
 
-
-    public EventSearchList(String iv_event_pic, String tv_event_title, String tv_event_time, String tv_event_location, String tv_event_distance, String tv_event_number, int type) {
-        this.iv_event_pic = iv_event_pic;
-        this.tv_event_title = tv_event_title;
-        this.tv_event_time = tv_event_time;
-        this.tv_event_location = tv_event_location;
-        this.tv_event_distance = tv_event_distance;
-        this.tv_event_number = tv_event_number;
-        this.type = type;
-    }
-
-
     public String getIv_event_pic() {
         return iv_event_pic;
     }

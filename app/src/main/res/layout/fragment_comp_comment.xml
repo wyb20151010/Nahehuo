@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,83 +22,90 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_below="@+id/ll_1"
-            android:id="@+id/rl_1"
-            android:layout_width="match_parent"
-            android:layout_height="35dp">
-
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_centerVertical="true"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:text="大家印象:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
-
         <LinearLayout
-            android:id="@+id/ll_2"
-            android:layout_below="@+id/rl_1"
-            android:orientation="horizontal"
-            android:background="@color/linecolorgray"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="1px">
-
-        </LinearLayout>
-
-        <com.zhy.view.flowlayout.TagFlowLayout
-            android:layout_below="@+id/ll_2"
-            android:layout_margin="10dp"
-            android:id="@+id/tfl_company_tag"
+            android:id="@+id/ll_sdsd"
+            android:layout_below="@+id/ll_1"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        </com.zhy.view.flowlayout.TagFlowLayout>
+            <RelativeLayout
+                android:id="@+id/rl_1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/ll_3"
-            android:layout_below="@+id/tfl_company_tag"
-            android:background="@color/linecolorgray"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="1px">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:text="大家印象:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_2"
+                android:layout_below="@+id/rl_1"
+                android:orientation="horizontal"
+                android:background="@color/linecolorgray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px">
 
-        <RelativeLayout
-            android:id="@+id/rl_2"
-            android:layout_below="@+id/ll_3"
-            android:layout_width="match_parent"
-            android:layout_height="35dp">
+            </LinearLayout>
 
-            <TextView
-                android:layout_centerInParent="true"
-                android:textSize="15sp"
-                android:textColor="@color/textcolorgray"
-                android:text="收起"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:layout_below="@+id/ll_2"
+                android:layout_margin="10dp"
+                android:id="@+id/tfl_company_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_below="@+id/rl_2"
-            android:id="@+id/ll_4"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/backgroundgray">
+            </com.zhy.view.flowlayout.TagFlowLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/ll_3"
+                android:layout_below="@+id/tfl_company_tag"
+                android:background="@color/linecolorgray"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px">
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_2"
+                android:layout_below="@+id/ll_3"
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:textSize="15sp"
+                    android:textColor="@color/textcolorgray"
+                    android:text="收起"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:id="@+id/ll_4"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/backgroundgray">
+
+            </LinearLayout>
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/rl_3"
-            android:layout_below="@+id/ll_4"
+            android:layout_below="@+id/ll_sdsd"
             android:layout_width="match_parent"
             android:layout_height="35dp">
 
@@ -133,10 +138,10 @@
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.v7.widget.RecyclerView
+            <app.nahehuo.com.view.AutoLoadRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"/>
+                android:layout_height="match_parent"/>
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <RelativeLayout

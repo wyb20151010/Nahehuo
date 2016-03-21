@@ -92,8 +92,15 @@ public class CompProgressFragment extends Fragment {
                                    mCompHistories.add(history);
                                }
                                mAdapter.notifyDataSetChanged();
+                               if (srl_comp_history.isRefreshing()) {
+                                   srl_comp_history.setRefreshing(false);
+                               }
                            }
-
+                           else {
+                               if (srl_comp_history.isRefreshing()) {
+                                   srl_comp_history.setRefreshing(false);
+                               }
+                           }
                            super.onResponse(response);
                        }
                    });
@@ -131,7 +138,6 @@ public class CompProgressFragment extends Fragment {
                 new CompanyDetailActivity.ConvertToComHistory() {
                     @Override public void convertToComHistory(String cid) {
                         mCid = cid;
-                        mCompHistories.clear();
                         mHandler.sendEmptyMessage(COMPANY_HISTORY);
                     }
                 });
@@ -139,6 +145,7 @@ public class CompProgressFragment extends Fragment {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override public void onRefresh() {
                         pageindex = 1;
+                        mCompHistories.clear();
                         mHandler.sendEmptyMessage(COMPANY_HISTORY);
                     }
                 });

@@ -13,31 +13,24 @@ public class ProjectListDict {
     private String projectTitleDetail;
     private String projectComName;
     private String projectComPosition;
-    private List<TagItemColor> projectTagList;
+    private List<String> projectTagList;
     private String tagPosition;
     private String tagFind;
 
 
-    public ProjectListDict( String projectTitle, String projectTitleDetail,
-                            String projectComName, String projectComPosition,
-                            String tagPosition,String tagFind) {
+    public ProjectListDict() {
+    }
+
+
+    public ProjectListDict(String projectPic, String personPic, String projectTitle, String projectTitleDetail, String projectComName, String projectComPosition) {
+        this.projectPic = projectPic;
+        this.personPic = personPic;
         this.projectTitle = projectTitle;
         this.projectTitleDetail = projectTitleDetail;
         this.projectComName = projectComName;
         this.projectComPosition = projectComPosition;
-        this.tagFind=tagFind;
-        this.tagPosition=tagPosition;
     }
 
-
-    public String getProjectTitleDetail() {
-        return projectTitleDetail;
-    }
-
-
-    public void setProjectTitleDetail(String projectTitleDetail) {
-        this.projectTitleDetail = projectTitleDetail;
-    }
 
     public String getProjectPic() {
         return projectPic;
@@ -69,6 +62,16 @@ public class ProjectListDict {
     }
 
 
+    public String getProjectTitleDetail() {
+        return projectTitleDetail;
+    }
+
+
+    public void setProjectTitleDetail(String projectTitleDetail) {
+        this.projectTitleDetail = projectTitleDetail;
+    }
+
+
     public String getProjectComName() {
         return projectComName;
     }
@@ -86,6 +89,16 @@ public class ProjectListDict {
 
     public void setProjectComPosition(String projectComPosition) {
         this.projectComPosition = projectComPosition;
+    }
+
+
+    public List<String> getProjectTagList() {
+        return projectTagList;
+    }
+
+
+    public void setProjectTagList(List<String> projectTagList) {
+        this.projectTagList = projectTagList;
     }
 
 
